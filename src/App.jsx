@@ -13,6 +13,7 @@ import CTA from "./components/CTA/CTA";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import HelpButton from "./HelpButton/HelpButton";
+import Map from "./components/Location/Location";
 
 import Blogs from "./components/Blogs/Blogs";
 import BlogDetails from "./components/BlogDetails/BlogDetails";
@@ -38,6 +39,7 @@ function Home() {
       <Blogs />
       <Contact />
       <CTA />
+      <Map />
       <Footer />
       <HelpButton />
     </>

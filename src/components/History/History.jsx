@@ -36,9 +36,7 @@ const History = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      /* ==========================================
-         HEADER REVEAL
-      ========================================== */
+      /* HEADER */
 
       gsap.from(".history-header", {
         opacity: 0,
@@ -52,9 +50,7 @@ const History = () => {
         },
       });
 
-      /* ==========================================
-         TIMELINE LINE
-      ========================================== */
+      /* TIMELINE LINE */
 
       gsap.from(".history-timeline-line", {
         scaleX: 0,
@@ -68,9 +64,7 @@ const History = () => {
         },
       });
 
-      /* ==========================================
-         TIMELINE ITEMS
-      ========================================== */
+      /* TIMELINE ITEMS */
 
       gsap.from(".history-timeline-item", {
         opacity: 0,
@@ -85,9 +79,7 @@ const History = () => {
         },
       });
 
-      /* ==========================================
-         VISUAL
-      ========================================== */
+      /* DESKTOP VISUAL */
 
       gsap.from(".history-circle", {
         opacity: 0,
@@ -127,9 +119,7 @@ const History = () => {
         },
       });
 
-      /* ==========================================
-         BUTTON
-      ========================================== */
+      /* BUTTON */
 
       gsap.from(".history-button", {
         opacity: 0,
@@ -149,31 +139,33 @@ const History = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="history-section" id="history">
+    <section
+      ref={sectionRef}
+      className="history-section"
+      id="history"
+      style={{
+        "--history-mobile-image": `url(${lowLady})`,
+      }}
+    >
       <div className="history-container">
-        {/* ==========================================
+        {/* =========================================
             LEFT CONTENT
-        ========================================== */}
+        ========================================= */}
 
         <div className="history-content">
-          <div className="history-header">
-            {/* SECTION LABEL */}
+          <div className="history-mobile-bg" aria-hidden="true" />
 
+          <div className="history-header">
             <div className="history-eyebrow">
               <span className="history-eyebrow-line"></span>
-
               <span>Our History</span>
             </div>
-
-            {/* HEADING */}
 
             <h2 className="history-title">
               Built on Integrity.
               <br />
               Focused on <span>Success.</span>
             </h2>
-
-            {/* DESCRIPTION */}
 
             <p className="history-intro">
               For more than two decades, our firm has grown through trust,
@@ -182,9 +174,9 @@ const History = () => {
             </p>
           </div>
 
-          {/* ==========================================
+          {/* =========================================
               TIMELINE
-          ========================================== */}
+          ========================================= */}
 
           <div className="history-timeline">
             <div className="history-timeline-line"></div>
@@ -208,9 +200,9 @@ const History = () => {
             ))}
           </div>
 
-          {/* ==========================================
+          {/* =========================================
               BUTTON
-          ========================================== */}
+          ========================================= */}
 
           <a href="#about" className="history-button">
             <span>Discover Our Story</span>
@@ -219,26 +211,18 @@ const History = () => {
           </a>
         </div>
 
-        {/* ==========================================
-            RIGHT VISUAL
-        ========================================== */}
+        {/* =========================================
+            RIGHT DESKTOP VISUAL
+        ========================================= */}
 
         <div className="history-visual">
-          {/* SOFT GLOW */}
-
           <div className="history-glow"></div>
-
-          {/* SMALLER CIRCLE */}
 
           <div className="history-circle">
             <div className="history-circle-inner"></div>
           </div>
 
-          {/* LADY JUSTICE */}
-
           <img src={lowLady} alt="Lady Justice" className="history-image" />
-
-          {/* EXPERIENCE BADGE */}
 
           <div className="history-year-badge">
             <span className="history-badge-number">25</span>
@@ -253,8 +237,6 @@ const History = () => {
               </small>
             </div>
           </div>
-
-          {/* DECORATIVE LABEL */}
 
           <div className="history-visual-label">
             <span></span>

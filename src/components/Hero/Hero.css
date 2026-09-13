@@ -284,7 +284,7 @@ img {
 
   color: #f8f7f3;
 
-  font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
+  font-family: "DM Serif Display", Georgia, "Times New Roman", serif;
 
   font-size: clamp(38px, 5.7vw, 90px);
 
