@@ -1,0 +1,676 @@
+/* =========================================================
+   SARIKA KUSHAWAHA LAW
+   PREMIUM FOOTER
+========================================================= */
+
+.skl-footer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #15363c;
+  color: #f7f6f2;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/* =========================================================
+   SUBTLE BACKGROUND DETAIL
+========================================================= */
+
+.skl-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 8%;
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.045);
+  pointer-events: none;
+}
+
+.skl-footer::after {
+  content: "SKL";
+  position: absolute;
+  right: -45px;
+  bottom: -105px;
+
+  color: rgba(255, 255, 255, 0.025);
+
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 330px;
+  font-weight: 400;
+  line-height: 1;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* =========================================================
+   INNER
+========================================================= */
+
+.skl-footer-inner {
+  position: relative;
+  z-index: 2;
+
+  width: min(1380px, calc(100% - 90px));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.skl-footer-top {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, 1.7fr)
+    minmax(140px, 0.8fr)
+    minmax(170px, 1fr)
+    minmax(250px, 1.25fr);
+
+  gap: 70px;
+
+  padding: 78px 0 62px;
+}
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.skl-footer-brand {
+  max-width: 360px;
+}
+
+/* LOGO */
+
+.skl-footer-logo {
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+
+  text-decoration: none;
+
+  margin-bottom: 25px;
+}
+
+.skl-footer-logo img {
+  display: block;
+
+  width: auto;
+  height: 58px;
+
+  max-width: 230px;
+
+  object-fit: contain;
+
+  filter: brightness(0) invert(1);
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.skl-footer-logo:hover img {
+  transform: translateY(-2px);
+  opacity: 0.88;
+}
+
+/* DESCRIPTION */
+
+.skl-footer-description {
+  max-width: 350px;
+
+  margin: 0 0 25px;
+
+  color: rgba(247, 246, 242, 0.65);
+
+  font-size: 14px;
+  font-weight: 400;
+
+  line-height: 1.8;
+}
+
+/* LOCATION */
+
+.skl-footer-location {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: rgba(247, 246, 242, 0.72);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.skl-footer-location svg {
+  flex-shrink: 0;
+  color: #aa8140;
+}
+
+/* =========================================================
+   COLUMN
+========================================================= */
+
+.skl-footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* COLUMN LABEL */
+
+.skl-footer-label {
+  position: relative;
+
+  display: inline-block;
+
+  width: fit-content;
+
+  margin-bottom: 25px;
+
+  color: #aa8140;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.skl-footer-label::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -9px;
+
+  width: 27px;
+  height: 1px;
+
+  background: #aa8140;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.skl-footer-links {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.skl-footer-links a {
+  position: relative;
+
+  width: fit-content;
+
+  color: rgba(247, 246, 242, 0.7);
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.skl-footer-links a::before {
+  content: "";
+
+  position: absolute;
+
+  left: -15px;
+  top: 50%;
+
+  width: 0;
+  height: 1px;
+
+  background: #aa8140;
+
+  transform: translateY(-50%);
+
+  transition: width 0.3s ease;
+}
+
+.skl-footer-links a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.skl-footer-links a:hover::before {
+  width: 9px;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.skl-footer-contact {
+  min-width: 0;
+}
+
+.skl-contact-item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-bottom: 17px;
+
+  color: rgba(247, 246, 242, 0.72);
+
+  text-decoration: none;
+
+  font-size: 12.5px;
+  line-height: 1.6;
+
+  transition: color 0.3s ease;
+}
+
+.skl-contact-item:hover {
+  color: #fff;
+}
+
+.skl-contact-item:last-child {
+  margin-bottom: 0;
+}
+
+/* CONTACT ICON */
+
+.skl-contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  border: 1px solid rgba(170, 129, 64, 0.35);
+
+  color: #aa8140;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.skl-contact-item:hover .skl-contact-icon {
+  background: rgba(170, 129, 64, 0.1);
+
+  border-color: #aa8140;
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.skl-footer-divider {
+  position: relative;
+
+  width: 100%;
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.skl-footer-divider span {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 90px;
+  height: 1px;
+
+  background: #aa8140;
+}
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.skl-footer-bottom {
+  min-height: 82px;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 30px;
+}
+
+/* COPYRIGHT */
+
+.skl-footer-bottom p {
+  margin: 0;
+
+  color: rgba(247, 246, 242, 0.48);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BOTTOM LINKS
+========================================================= */
+
+.skl-footer-bottom-links {
+  display: flex;
+  align-items: center;
+
+  gap: 25px;
+}
+
+.skl-footer-bottom-links a {
+  color: rgba(247, 246, 242, 0.52);
+
+  text-decoration: none;
+
+  font-size: 11px;
+
+  transition: color 0.3s ease;
+}
+
+.skl-footer-bottom-links a:hover {
+  color: #aa8140;
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.skl-footer-top-btn {
+  justify-self: end;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 9px 0;
+
+  border: 0;
+
+  color: rgba(247, 246, 242, 0.65);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-family: "Inter", Arial, sans-serif;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  transition:
+    color 0.3s ease,
+    gap 0.3s ease;
+}
+
+.skl-footer-top-btn svg {
+  color: #aa8140;
+
+  transition: transform 0.3s ease;
+}
+
+.skl-footer-top-btn:hover {
+  color: #fff;
+  gap: 13px;
+}
+
+.skl-footer-top-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .skl-footer-inner {
+    width: min(100% - 60px, 1000px);
+  }
+
+  .skl-footer-top {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 50px;
+  }
+
+  .skl-footer-brand {
+    grid-column: 1 / -1;
+    max-width: 500px;
+  }
+
+  .skl-footer-bottom {
+    grid-template-columns: 1fr auto;
+  }
+
+  .skl-footer-bottom-links {
+    justify-self: end;
+  }
+
+  .skl-footer-top-btn {
+    display: none;
+  }
+}
+
+/* =========================================================
+   TABLET SMALL
+========================================================= */
+
+@media (max-width: 760px) {
+  .skl-footer-inner {
+    width: calc(100% - 40px);
+  }
+
+  .skl-footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 45px 35px;
+
+    padding: 60px 0 48px;
+  }
+
+  .skl-footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .skl-footer-description {
+    max-width: 480px;
+  }
+
+  .skl-footer-bottom {
+    grid-template-columns: 1fr;
+
+    padding: 22px 0 25px;
+
+    gap: 14px;
+  }
+
+  .skl-footer-bottom-links {
+    justify-self: start;
+  }
+
+  .skl-footer::after {
+    font-size: 240px;
+    right: -35px;
+    bottom: -75px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .skl-footer-inner {
+    width: calc(100% - 32px);
+  }
+
+  .skl-footer-top {
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+
+    padding: 50px 0 40px;
+  }
+
+  .skl-footer-brand {
+    grid-column: auto;
+  }
+
+  /* LOGO */
+
+  .skl-footer-logo {
+    margin-bottom: 20px;
+  }
+
+  .skl-footer-logo img {
+    height: 52px;
+    max-width: 210px;
+  }
+
+  /* DESCRIPTION */
+
+  .skl-footer-description {
+    margin-bottom: 20px;
+
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  /* LOCATION */
+
+  .skl-footer-location {
+    font-size: 11.5px;
+  }
+
+  /* COLUMNS */
+
+  .skl-footer-label {
+    margin-bottom: 22px;
+
+    font-size: 9px;
+  }
+
+  .skl-footer-links {
+    gap: 12px;
+  }
+
+  .skl-footer-links a {
+    font-size: 13px;
+  }
+
+  /* CONTACT */
+
+  .skl-contact-item {
+    margin-bottom: 14px;
+
+    font-size: 12px;
+  }
+
+  /* BOTTOM */
+
+  .skl-footer-bottom {
+    min-height: auto;
+
+    padding: 22px 0 25px;
+
+    gap: 17px;
+  }
+
+  .skl-footer-bottom p {
+    font-size: 10px;
+  }
+
+  .skl-footer-bottom-links {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .skl-footer-bottom-links a {
+    font-size: 10px;
+  }
+
+  .skl-footer-top-btn {
+    display: inline-flex;
+    justify-self: start;
+
+    margin-top: 2px;
+  }
+
+  /* BACKGROUND LETTER */
+
+  .skl-footer::after {
+    font-size: 175px;
+    right: -30px;
+    bottom: -40px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .skl-footer-inner {
+    width: calc(100% - 26px);
+  }
+
+  .skl-footer-top {
+    padding-top: 42px;
+  }
+
+  .skl-footer-logo img {
+    height: 47px;
+    max-width: 190px;
+  }
+
+  .skl-footer-description {
+    font-size: 12px;
+  }
+
+  .skl-footer-links a {
+    font-size: 12px;
+  }
+
+  .skl-contact-item {
+    font-size: 11px;
+  }
+
+  .skl-footer-bottom-links {
+    gap: 12px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .skl-footer *,
+  .skl-footer *::before,
+  .skl-footer *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

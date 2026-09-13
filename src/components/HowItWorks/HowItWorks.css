@@ -1,0 +1,1176 @@
+/* =========================================================
+   HOW IT WORKS
+   PREMIUM EDITORIAL LEGAL PROCESS — v2
+========================================================= */
+
+.how-section {
+  position: relative;
+  width: 100%;
+  padding: 130px 0 120px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #102f34;
+  color: #f8f5ed;
+}
+
+/* On laptop/desktop the whole section fits one screen: no
+   scrolling needed to see the full process. Mobile keeps its
+   natural vertical scroll since the timeline stacks there. */
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.how-background {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.how-bg-image {
+  position: absolute;
+  top: -5%;
+  left: -3%;
+  width: 106%;
+  height: 110%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.18;
+  filter: grayscale(80%) contrast(1.08);
+}
+
+.how-bg-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8, 27, 31, 0.98) 0%,
+      rgba(13, 44, 49, 0.94) 48%,
+      rgba(13, 43, 48, 0.93) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 27, 31, 0.4),
+      transparent 45%,
+      rgba(5, 20, 23, 0.5)
+    );
+}
+
+.how-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+
+  background-image:
+    linear-gradient(rgba(213, 175, 99, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(213, 175, 99, 0.22) 1px, transparent 1px);
+
+  background-size: 90px 90px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+}
+
+.how-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.8) 0.6px,
+    transparent 0.6px
+  );
+
+  background-size: 5px 5px;
+}
+
+/* =========================================================
+   AMBIENT LIGHTS
+========================================================= */
+
+.how-light {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(55px);
+}
+
+.how-light-one {
+  width: 430px;
+  height: 430px;
+  top: -220px;
+  right: -150px;
+
+  background: radial-gradient(
+    circle,
+    rgba(213, 175, 99, 0.2) 0%,
+    rgba(213, 175, 99, 0.07) 38%,
+    transparent 72%
+  );
+}
+
+.how-light-two {
+  width: 420px;
+  height: 420px;
+  bottom: -240px;
+  left: -170px;
+
+  background: radial-gradient(
+    circle,
+    rgba(213, 175, 99, 0.15) 0%,
+    rgba(213, 175, 99, 0.05) 40%,
+    transparent 72%
+  );
+}
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.how-corner {
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  opacity: 0.35;
+}
+
+.how-corner-top {
+  top: 32px;
+  right: 32px;
+
+  border-top: 1px solid rgba(213, 175, 99, 0.4);
+  border-right: 1px solid rgba(213, 175, 99, 0.4);
+}
+
+.how-corner-bottom {
+  bottom: 32px;
+  left: 32px;
+
+  border-left: 1px solid rgba(213, 175, 99, 0.3);
+  border-bottom: 1px solid rgba(213, 175, 99, 0.3);
+}
+
+/* =========================================================
+   CONTAINER — width unchanged, so left/right space stays identical
+========================================================= */
+
+.how-container {
+  position: relative;
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.how-header {
+  margin-bottom: 96px;
+}
+
+.how-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+
+  color: #d5af63;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.how-eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: #d5af63;
+}
+
+.how-heading-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.48fr);
+  align-items: end;
+  gap: 90px;
+}
+
+.how-heading {
+  margin: 0;
+
+  color: #f8f5ed;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: clamp(52px, 5.8vw, 84px);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.how-heading em {
+  display: block;
+  color: #d5af63;
+  font-style: italic;
+}
+
+.how-description-wrap {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 5px;
+}
+
+.how-description-index {
+  color: rgba(213, 175, 99, 0.55);
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: 14px;
+  line-height: 1;
+}
+
+.how-description {
+  max-width: 480px;
+  margin: 0;
+
+  color: rgba(248, 245, 237, 0.62);
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.how-process {
+  position: relative;
+  width: 100%;
+}
+
+.how-progress {
+  position: absolute;
+  top: 26px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  z-index: 0;
+}
+
+.how-progress-base {
+  position: absolute;
+  inset: 0;
+  background: rgba(213, 175, 99, 0.16);
+}
+
+.how-progress-fill {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  background: linear-gradient(
+    90deg,
+    rgba(213, 175, 99, 0.2),
+    #d5af63,
+    rgba(213, 175, 99, 0.25)
+  );
+}
+
+/* =========================================================
+   STEPS
+========================================================= */
+
+.how-steps {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  z-index: 2;
+}
+
+.how-step {
+  position: relative;
+  min-width: 0;
+
+  padding: 0 45px 10px;
+
+  border-right: 1px solid rgba(248, 245, 237, 0.08);
+
+  cursor: default;
+  overflow: hidden;
+}
+
+.how-step:first-child {
+  padding-left: 0;
+}
+
+.how-step:last-child {
+  padding-right: 0;
+  border-right: none;
+}
+
+/* -----------------------------------------------------
+   GHOST NUMERAL — the numbering becomes the bold move
+   instead of a small badge in the corner
+----------------------------------------------------- */
+
+.how-step-ghost {
+  position: absolute;
+  top: -0.32em;
+  right: 10px;
+
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(213, 175, 99, 0.16);
+
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: clamp(120px, 11vw, 168px);
+  line-height: 1;
+
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+
+.how-step:hover .how-step-ghost {
+  -webkit-text-stroke-color: rgba(213, 175, 99, 0.32);
+}
+
+.how-step:first-child .how-step-ghost {
+  right: auto;
+  left: 10px;
+}
+
+/* =========================================================
+   META
+========================================================= */
+
+.how-step-meta {
+  position: relative;
+  height: 26px;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.how-step-tag {
+  color: rgba(248, 245, 237, 0.34);
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+/* =========================================================
+   MARKER
+========================================================= */
+
+.how-marker {
+  position: relative;
+  z-index: 1;
+
+  width: 53px;
+  height: 53px;
+
+  margin-bottom: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(213, 175, 99, 0.55);
+
+  border-radius: 50%;
+
+  background: rgba(16, 47, 52, 0.9);
+
+  box-shadow:
+    0 0 0 7px rgba(213, 175, 99, 0.025),
+    0 12px 30px rgba(0, 0, 0, 0.16);
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    border-color 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.how-marker-inner {
+  width: 9px;
+  height: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d5af63;
+  border-radius: 50%;
+
+  transition: background 0.4s ease;
+}
+
+.how-marker-inner span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #d5af63;
+}
+
+.how-marker.is-reached {
+  border-color: #d5af63;
+  background: rgba(213, 175, 99, 0.14);
+}
+
+.how-marker.is-reached .how-marker-inner {
+  background: #d5af63;
+}
+
+.how-step:hover .how-marker {
+  border-color: #e2c17b;
+
+  box-shadow:
+    0 0 0 9px rgba(213, 175, 99, 0.035),
+    0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+/* =========================================================
+   ICON — a rotated frame nods to a notary seal rather than
+   a generic top/bottom rule
+========================================================= */
+
+.how-icon {
+  position: relative;
+  z-index: 1;
+
+  width: 54px;
+  height: 54px;
+
+  margin-bottom: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #d5af63;
+}
+
+.how-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(213, 175, 99, 0.32);
+  transform: rotate(45deg);
+  transition:
+    border-color 0.35s ease,
+    transform 0.45s ease;
+}
+
+.how-step:hover .how-icon {
+  color: #f0d18d;
+}
+
+.how-step:hover .how-icon::before {
+  border-color: rgba(213, 175, 99, 0.6);
+  transform: rotate(135deg);
+}
+
+.how-icon svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.how-step-content {
+  position: relative;
+  z-index: 1;
+  max-width: 355px;
+}
+
+.how-step-content h3 {
+  margin: 0;
+
+  color: #f8f5ed;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.how-step-content p {
+  max-width: 330px;
+
+  margin: 17px 0 0;
+
+  color: rgba(248, 245, 237, 0.55);
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   STEP ARROW
+========================================================= */
+
+.how-step-arrow {
+  position: relative;
+  z-index: 1;
+
+  width: 34px;
+  height: 34px;
+
+  margin-top: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #d5af63;
+
+  border: 1px solid rgba(213, 175, 99, 0.2);
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.how-step:hover .how-step-arrow {
+  background: rgba(213, 175, 99, 0.08);
+  border-color: rgba(213, 175, 99, 0.5);
+}
+
+/* =========================================================
+   BOTTOM CTA
+========================================================= */
+
+.how-bottom {
+  margin-top: 96px;
+  padding: 38px 42px;
+
+  border-top: 1px solid rgba(248, 245, 237, 0.1);
+  background: linear-gradient(
+    100deg,
+    rgba(213, 175, 99, 0.06),
+    transparent 55%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.how-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.how-bottom-number {
+  color: rgba(213, 175, 99, 0.55);
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: 15px;
+}
+
+.how-bottom-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.how-bottom-copy span {
+  color: rgba(248, 245, 237, 0.32);
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.how-bottom-copy strong {
+  color: #f8f5ed;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: 21px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.how-button {
+  min-height: 53px;
+
+  padding: 0 9px 0 23px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+
+  color: #102f34;
+  background: #d5af63;
+
+  text-decoration: none;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.how-button:hover {
+  transform: translateY(-4px);
+
+  background: #e2c17d;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.22),
+    0 0 30px rgba(213, 175, 99, 0.12);
+}
+
+.how-button-icon {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #102f34;
+  color: #fff;
+
+  transition: transform 0.35s ease;
+}
+
+.how-button:hover .how-button-icon {
+  transform: translate(3px, -3px);
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+  .how-section {
+    padding: 150px 0 135px;
+  }
+
+  .how-container {
+    width: 88%;
+    max-width: 1540px;
+  }
+
+  .how-header {
+    margin-bottom: 108px;
+  }
+
+  .how-heading {
+    font-size: 88px;
+  }
+
+  .how-step-content h3 {
+    font-size: 34px;
+  }
+
+  .how-step-content p {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .how-section {
+    padding: 108px 0 112px;
+  }
+
+  .how-container {
+    width: 90%;
+  }
+
+  .how-heading-row {
+    gap: 55px;
+  }
+
+  .how-step {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .how-step-ghost {
+    font-size: clamp(96px, 12vw, 130px);
+  }
+
+  .how-step-content h3 {
+    font-size: 27px;
+  }
+
+  .how-step-content p {
+    font-size: 12px;
+  }
+
+  .how-progress {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .how-section {
+    padding: 92px 0 100px;
+  }
+
+  .how-header {
+    margin-bottom: 72px;
+  }
+
+  .how-heading-row {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .how-description-wrap {
+    max-width: 650px;
+  }
+
+  .how-progress {
+    left: 8%;
+    right: 8%;
+  }
+
+  .how-step {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .how-step:first-child {
+    padding-left: 0;
+  }
+
+  .how-step:last-child {
+    padding-right: 0;
+  }
+
+  .how-step-content h3 {
+    font-size: 25px;
+  }
+
+  .how-step-content p {
+    font-size: 12px;
+  }
+
+  .how-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .how-marker {
+    width: 48px;
+    height: 48px;
+  }
+
+  .how-bottom {
+    margin-top: 72px;
+    padding: 32px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .how-section {
+    padding: 80px 0 85px;
+  }
+
+  .how-container {
+    width: calc(100% - 34px);
+  }
+
+  .how-header {
+    margin-bottom: 62px;
+  }
+
+  .how-eyebrow {
+    margin-bottom: 16px;
+    font-size: 9px;
+  }
+
+  .how-eyebrow-line {
+    width: 23px;
+  }
+
+  .how-heading {
+    font-size: clamp(40px, 11vw, 54px);
+    line-height: 1;
+  }
+
+  .how-description-wrap {
+    gap: 13px;
+  }
+
+  .how-description {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  /* -----------------------------------------
+     MOBILE PROCESS
+  ----------------------------------------- */
+
+  .how-process {
+    padding-left: 2px;
+  }
+
+  .how-progress {
+    top: 24px;
+    left: 24px;
+    right: auto;
+
+    width: 1px;
+    height: calc(100% - 45px);
+  }
+
+  .how-progress-base {
+    width: 1px;
+    height: 100%;
+  }
+
+  .how-progress-fill {
+    width: 1px;
+    height: 100%;
+
+    transform: scaleY(0);
+    transform-origin: top center;
+    background: linear-gradient(
+      180deg,
+      rgba(213, 175, 99, 0.2),
+      #d5af63,
+      rgba(213, 175, 99, 0.15)
+    );
+  }
+
+  .how-steps {
+    display: block;
+  }
+
+  .how-step {
+    min-height: 230px;
+
+    padding: 0 0 55px 75px;
+
+    border-right: none;
+  }
+
+  .how-step:last-child {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .how-step:first-child {
+    padding-left: 75px;
+  }
+
+  .how-step:last-child {
+    padding-right: 0;
+  }
+
+  .how-step-ghost {
+    top: 20px;
+    right: -6px;
+    left: auto !important;
+    font-size: 90px;
+  }
+
+  .how-step-meta {
+    height: 24px;
+    margin-bottom: 18px;
+  }
+
+  .how-step-tag {
+    display: none;
+  }
+
+  .how-marker {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 50px;
+    height: 50px;
+
+    margin: 0;
+  }
+
+  .how-icon {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 23px;
+  }
+
+  .how-step-content h3 {
+    font-size: 27px;
+    line-height: 1.08;
+  }
+
+  .how-step-content p {
+    margin-top: 12px;
+
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .how-step-arrow {
+    display: none;
+  }
+
+  /* -----------------------------------------
+     MOBILE CTA
+  ----------------------------------------- */
+
+  .how-bottom {
+    margin-top: 55px;
+    padding: 26px 22px;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 25px;
+  }
+
+  .how-bottom-copy strong {
+    font-size: 18px;
+  }
+
+  .how-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* -----------------------------------------
+     MOBILE BACKGROUND
+  ----------------------------------------- */
+
+  .how-bg-image {
+    width: 130%;
+    left: -15%;
+    opacity: 0.13;
+  }
+
+  .how-grid {
+    background-size: 55px 55px;
+    opacity: 0.045;
+  }
+
+  .how-light-one {
+    width: 280px;
+    height: 280px;
+    top: -120px;
+    right: -110px;
+  }
+
+  .how-light-two {
+    width: 280px;
+    height: 280px;
+    bottom: -130px;
+    left: -120px;
+  }
+
+  .how-corner {
+    width: 65px;
+    height: 65px;
+  }
+
+  .how-corner-top {
+    top: 18px;
+    right: 18px;
+  }
+
+  .how-corner-bottom {
+    bottom: 18px;
+    left: 18px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .how-container {
+    width: calc(100% - 28px);
+  }
+
+  .how-heading {
+    font-size: 37px;
+  }
+
+  .how-step {
+    padding-left: 68px;
+  }
+
+  .how-step:first-child {
+    padding-left: 68px;
+  }
+
+  .how-marker {
+    width: 46px;
+    height: 46px;
+  }
+
+  .how-progress {
+    left: 22px;
+  }
+
+  .how-step-content h3 {
+    font-size: 24px;
+  }
+
+  .how-step-content p {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   FIT ONE LAPTOP SCREEN (DESKTOP)
+========================================================= */
+
+@media (min-width: 901px) {
+  .how-section {
+    height: 100vh;
+    min-height: 640px;
+    max-height: 980px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .how-container {
+    height: auto;
+    max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(28px, 4vh, 64px);
+  }
+
+  .how-header {
+    margin-bottom: 0;
+  }
+
+  .how-heading {
+    font-size: clamp(38px, 4vw, 68px);
+  }
+
+  .how-eyebrow {
+    margin-bottom: 14px;
+  }
+
+  .how-description {
+    line-height: 1.7;
+  }
+
+  .how-step-ghost {
+    font-size: clamp(80px, 8vw, 128px);
+  }
+
+  .how-step-content h3 {
+    font-size: clamp(22px, 1.8vw, 28px);
+  }
+
+  .how-step-content p {
+    margin-top: 12px;
+    line-height: 1.65;
+  }
+
+  .how-progress {
+    top: 22px;
+  }
+
+  .how-marker {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 18px;
+  }
+
+  .how-icon {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 18px;
+  }
+
+  .how-step-arrow {
+    margin-top: 18px;
+  }
+
+  .how-bottom {
+    margin-top: 0;
+    padding: clamp(18px, 2.5vh, 32px) clamp(20px, 2.5vw, 38px);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .how-bg-image,
+  .how-marker,
+  .how-icon::before,
+  .how-step-arrow,
+  .how-button,
+  .how-button-icon {
+    transition: none;
+  }
+}

@@ -1,0 +1,1391 @@
+/* =========================================================
+   PREMIUM LAW HERO
+   FULL WIDTH / FULL HEIGHT / FULLY RESPONSIVE
+========================================================= */
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #081d28;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+
+  height: 100dvh;
+  min-height: 100dvh;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #081d28;
+  color: #ffffff;
+
+  isolation: isolate;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================
+   BACKGROUND WRAPPER
+========================================================= */
+
+.hero-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  z-index: 0;
+
+  background: #081d28;
+}
+
+/* =========================================================
+   HERO IMAGE
+========================================================= */
+
+.hero-image {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  max-width: none;
+
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  object-fit: cover;
+
+  /*
+    Desktop:
+    keeps the lawyer visible while filling
+    the entire hero.
+  */
+  object-position: center center;
+
+  /* subtle desaturation + lift for a more editorial, premium tone */
+  filter: saturate(0.94) contrast(1.03);
+
+  transform: scale(1.08);
+  transform-origin: center center;
+
+  will-change: transform;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+/* =========================================================
+   GENERAL DARK OVERLAY
+========================================================= */
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(4, 16, 24, 0.1) 0%,
+    rgba(4, 16, 24, 0.1) 48%,
+    rgba(4, 16, 24, 0.46) 100%
+  );
+}
+
+/* =========================================================
+   LEFT CONTENT GRADIENT
+========================================================= */
+
+.hero-gradient {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    rgba(3, 16, 24, 0.97) 0%,
+    rgba(3, 16, 24, 0.9) 16%,
+    rgba(3, 16, 24, 0.72) 31%,
+    rgba(3, 16, 24, 0.42) 48%,
+    rgba(3, 16, 24, 0.15) 67%,
+    rgba(3, 16, 24, 0.03) 100%
+  );
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.hero-content {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0 5vw;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+.hero-content > * {
+  pointer-events: auto;
+}
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.hero-left {
+  width: min(620px, 52%);
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 0 0 22px;
+  padding: 0;
+
+  color: #d6b878;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+.hero-eyebrow-line {
+  width: 34px;
+  height: 1px;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(90deg, #d6b878, rgba(214, 184, 120, 0.2));
+}
+
+/* =========================================================
+   TITLE
+   Fluid sizing + gentle tracking so the serif display face
+   never crowds or overflows at narrow widths.
+========================================================= */
+
+.hero-title {
+  width: 100%;
+  max-width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  color: #f8f7f3;
+
+  font-family: "DM Serif Display", "Playfair Display", Georgia, serif;
+
+  font-size: clamp(38px, 5.7vw, 90px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  /* a serif display face needs open, not tight, tracking */
+  letter-spacing: -0.01em;
+
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+}
+
+.hero-title-line {
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+}
+
+.hero-title-line:nth-child(3) {
+  color: #e2c48e;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.hero-description {
+  width: min(480px, 100%);
+
+  margin: 28px 0 0;
+  padding: 0;
+
+  color: rgba(248, 247, 243, 0.72);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+   CTA BUTTON
+========================================================= */
+
+.hero-button {
+  position: relative;
+
+  width: auto;
+  min-width: 190px;
+  min-height: 52px;
+
+  margin-top: 30px;
+  padding: 0 21px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  overflow: hidden;
+
+  background: linear-gradient(135deg, #e6cd97 0%, #d6b878 45%, #c4a262 100%);
+
+  color: #102d3a;
+
+  text-decoration: none;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.01em;
+
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.hero-button::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: #f8f7f3;
+
+  transform: translateX(-101%);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.hero-button span,
+.hero-button svg {
+  position: relative;
+
+  z-index: 2;
+}
+
+.hero-button svg {
+  width: 16px;
+  height: 16px;
+
+  transition: transform 0.3s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
+}
+
+.hero-button:hover::before {
+  transform: translateX(0);
+}
+
+.hero-button:hover svg {
+  transform: translateX(5px);
+}
+
+/* =========================================================
+   EXPERIENCE CARD
+========================================================= */
+
+.hero-stat-card {
+  position: absolute;
+
+  right: 5vw;
+  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+
+  min-width: 205px;
+
+  padding: 16px 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  background: rgba(12, 35, 47, 0.76);
+
+  border: 1px solid rgba(214, 184, 120, 0.32);
+  border-top-color: rgba(214, 184, 120, 0.55);
+
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.32);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.hero-stat-card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(214, 184, 120, 0.65);
+
+  box-shadow: 0 26px 65px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+.hero-stat-people {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.hero-avatar {
+  width: 31px;
+  height: 31px;
+
+  margin-left: -7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid rgba(214, 184, 120, 0.55);
+
+  border-radius: 50%;
+
+  background: linear-gradient(160deg, #5a7280, #3c5560);
+
+  color: #f4ecd8;
+
+  overflow: hidden;
+}
+
+.hero-avatar:first-child {
+  margin-left: 0;
+}
+
+.hero-avatar svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* =========================================================
+   STAT CONTENT
+========================================================= */
+
+.hero-stat-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.hero-stat-content strong {
+  color: #f8f7f3;
+
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: 22px;
+
+  font-weight: 400;
+
+  line-height: 1;
+}
+
+.hero-stat-content span {
+  color: rgba(248, 247, 243, 0.58);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.04em;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.hero-scroll {
+  position: absolute;
+
+  left: 5vw;
+  bottom: 24px;
+
+  z-index: 6;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  color: rgba(248, 247, 243, 0.5);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.hero-scroll-line {
+  width: 45px;
+  height: 1px;
+
+  background: rgba(214, 184, 120, 0.6);
+}
+
+/* =========================================================
+   VERY LARGE DESKTOP
+   1920px+
+========================================================= */
+
+@media (min-width: 1920px) {
+  .hero-content {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .hero-left {
+    width: 680px;
+  }
+
+  .hero-title {
+    font-size: 98px;
+  }
+
+  .hero-description {
+    width: 510px;
+    font-size: 14px;
+  }
+
+  .hero-button {
+    min-width: 205px;
+    min-height: 56px;
+  }
+
+  .hero-stat-card {
+    right: 6vw;
+    bottom: 78px;
+  }
+
+  .hero-scroll {
+    left: 6vw;
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   1600px - 1919px
+========================================================= */
+
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .hero-content {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .hero-left {
+    width: 650px;
+  }
+
+  .hero-title {
+    font-size: 94px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .hero-stat-card {
+    right: 5vw;
+  }
+
+  .hero-scroll {
+    left: 5vw;
+  }
+}
+
+/* =========================================================
+   NORMAL LAPTOP
+   1201px - 1599px
+========================================================= */
+
+@media (min-width: 1201px) and (max-width: 1599px) {
+  .hero-content {
+    padding-left: 4.5vw;
+    padding-right: 4.5vw;
+  }
+
+  .hero-left {
+    width: min(600px, 53%);
+  }
+
+  .hero-title {
+    font-size: clamp(58px, 5.8vw, 84px);
+  }
+
+  .hero-description {
+    width: min(460px, 100%);
+    font-size: 12px;
+  }
+
+  .hero-button {
+    min-width: 185px;
+    min-height: 51px;
+  }
+
+  .hero-stat-card {
+    right: 4.5vw;
+    bottom: 68px;
+  }
+
+  .hero-scroll {
+    left: 4.5vw;
+  }
+}
+
+/* =========================================================
+   LAPTOP
+   1025px - 1200px
+========================================================= */
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .hero {
+    min-height: 100dvh;
+  }
+
+  .hero-content {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .hero-left {
+    width: min(570px, 57%);
+  }
+
+  .hero-title {
+    font-size: clamp(52px, 6vw, 74px);
+  }
+
+  .hero-description {
+    max-width: 430px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+  }
+
+  .hero-stat-card {
+    right: 4vw;
+    bottom: 65px;
+
+    min-width: 195px;
+  }
+
+  .hero-scroll {
+    left: 4vw;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+   901px - 1024px
+========================================================= */
+
+@media (min-width: 901px) and (max-width: 1024px) {
+  .hero {
+    min-height: 100dvh;
+  }
+
+  .hero-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .hero-left {
+    width: 66%;
+  }
+
+  .hero-title {
+    font-size: clamp(48px, 7vw, 66px);
+  }
+
+  .hero-description {
+    width: min(400px, 100%);
+
+    font-size: 12px;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(3, 16, 24, 0.96) 0%,
+      rgba(3, 16, 24, 0.82) 35%,
+      rgba(3, 16, 24, 0.45) 62%,
+      rgba(3, 16, 24, 0.12) 100%
+    );
+  }
+
+  .hero-stat-card {
+    right: 30px;
+    bottom: 58px;
+  }
+
+  .hero-scroll {
+    left: 30px;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+   601px - 900px
+========================================================= */
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .hero-content {
+    padding: 70px 25px calc(90px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-left {
+    width: 72%;
+  }
+
+  .hero-title {
+    font-size: clamp(42px, 7.4vw, 62px);
+
+    line-height: 1.02;
+  }
+
+  .hero-description {
+    width: min(390px, 100%);
+
+    margin-top: 22px;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(3, 16, 24, 0.96) 0%,
+      rgba(3, 16, 24, 0.78) 38%,
+      rgba(3, 16, 24, 0.38) 68%,
+      rgba(3, 16, 24, 0.12) 100%
+    );
+  }
+
+  .hero-stat-card {
+    right: 25px;
+    bottom: calc(48px + env(safe-area-inset-bottom, 0px));
+
+    min-width: 190px;
+
+    padding: 13px 15px;
+  }
+
+  .hero-avatar {
+    width: 29px;
+    height: 29px;
+  }
+
+  .hero-stat-content strong {
+    font-size: 20px;
+  }
+
+  .hero-scroll {
+    left: 25px;
+    bottom: 20px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   481px - 600px
+========================================================= */
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .hero {
+    width: 100%;
+
+    height: 100svh;
+    min-height: 100svh;
+
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .hero-image {
+    object-position: 67% center;
+
+    transform: scale(1.06);
+  }
+
+  .hero-overlay {
+    background: rgba(4, 18, 27, 0.3);
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 18, 27, 0.1) 0%,
+      rgba(4, 18, 27, 0.4) 38%,
+      rgba(4, 18, 27, 0.8) 70%,
+      rgba(4, 18, 27, 0.97) 100%
+    );
+  }
+
+  .hero-content {
+    width: 100%;
+    height: 100%;
+
+    padding: 35px 20px calc(100px + env(safe-area-inset-bottom, 0px));
+
+    align-items: flex-end;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    gap: 9px;
+
+    margin-bottom: 16px;
+
+    font-size: 10px;
+
+    letter-spacing: 0.08em;
+  }
+
+  .hero-eyebrow-line {
+    width: 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(38px, 10.5vw, 54px);
+
+    line-height: 1.03;
+
+    letter-spacing: -0.005em;
+  }
+
+  .hero-description {
+    width: min(370px, 100%);
+
+    margin-top: 18px;
+
+    font-size: 12.5px;
+
+    line-height: 1.65;
+  }
+
+  .hero-button {
+    min-width: 175px;
+    min-height: 49px;
+
+    margin-top: 22px;
+
+    padding: 0 17px;
+
+    font-size: 11px;
+
+    gap: 12px;
+  }
+
+  .hero-stat-card {
+    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+
+    min-width: auto;
+
+    padding: 9px 11px;
+
+    gap: 8px;
+  }
+
+  .hero-avatar {
+    width: 25px;
+    height: 25px;
+
+    margin-left: -6px;
+  }
+
+  .hero-avatar svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .hero-stat-content {
+    gap: 3px;
+  }
+
+  .hero-stat-content strong {
+    font-size: 17px;
+  }
+
+  .hero-stat-content span {
+    font-size: 8px;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   376px - 480px
+========================================================= */
+
+@media (min-width: 376px) and (max-width: 480px) {
+  .hero {
+    height: 100svh;
+    min-height: 100svh;
+
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .hero-image {
+    /*
+      Move image slightly right so
+      lawyer remains visible.
+    */
+    object-position: 68% center;
+
+    transform: scale(1.08);
+  }
+
+  .hero-overlay {
+    background: rgba(4, 18, 27, 0.36);
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 18, 27, 0.1) 0%,
+      rgba(4, 18, 27, 0.42) 38%,
+      rgba(4, 18, 27, 0.82) 68%,
+      rgba(4, 18, 27, 0.98) 100%
+    );
+  }
+
+  .hero-content {
+    padding: 30px 18px calc(92px + env(safe-area-inset-bottom, 0px));
+
+    align-items: flex-end;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 15px;
+
+    gap: 8px;
+
+    font-size: 9.5px;
+
+    letter-spacing: 0.07em;
+  }
+
+  .hero-eyebrow-line {
+    width: 21px;
+  }
+
+  .hero-title {
+    font-size: clamp(34px, 10.8vw, 48px);
+
+    line-height: 1.04;
+
+    letter-spacing: 0;
+  }
+
+  .hero-description {
+    width: 100%;
+
+    max-width: 350px;
+
+    margin-top: 17px;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+  }
+
+  .hero-button {
+    min-width: 170px;
+    min-height: 47px;
+
+    margin-top: 20px;
+
+    font-size: 10.5px;
+
+    gap: 11px;
+  }
+
+  .hero-stat-card {
+    right: 18px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+
+    padding: 9px 10px;
+
+    gap: 8px;
+  }
+
+  .hero-avatar {
+    width: 24px;
+    height: 24px;
+
+    margin-left: -5px;
+  }
+
+  .hero-avatar svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .hero-stat-content strong {
+    font-size: 16px;
+  }
+
+  .hero-stat-content span {
+    font-size: 8px;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   320px - 375px
+========================================================= */
+
+@media (max-width: 375px) {
+  .hero {
+    height: 100svh;
+    min-height: 100svh;
+
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .hero-image {
+    object-position: 70% center;
+
+    transform: scale(1.1);
+  }
+
+  .hero-overlay {
+    background: rgba(4, 18, 27, 0.38);
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(4, 18, 27, 0.12) 0%,
+      rgba(4, 18, 27, 0.46) 38%,
+      rgba(4, 18, 27, 0.86) 67%,
+      rgba(4, 18, 27, 0.99) 100%
+    );
+  }
+
+  .hero-content {
+    padding: 25px 16px calc(80px + env(safe-area-inset-bottom, 0px));
+
+    align-items: flex-end;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    gap: 7px;
+
+    margin-bottom: 14px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.06em;
+  }
+
+  .hero-eyebrow-line {
+    width: 19px;
+  }
+
+  /*
+    Fluid, not fixed: prevents the longest line
+    ("Representation.") from ever outgrowing the
+    viewport and getting clipped by overflow-x:hidden.
+  */
+  .hero-title {
+    font-size: clamp(30px, 10.2vw, 42px);
+
+    line-height: 1.05;
+
+    letter-spacing: 0;
+  }
+
+  .hero-description {
+    max-width: 310px;
+
+    margin-top: 16px;
+
+    font-size: 11.5px;
+
+    line-height: 1.6;
+  }
+
+  .hero-button {
+    min-width: 160px;
+    min-height: 45px;
+
+    margin-top: 19px;
+
+    padding: 0 15px;
+
+    font-size: 10px;
+
+    gap: 9px;
+  }
+
+  .hero-button svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hero-stat-card {
+    right: 16px;
+    bottom: calc(15px + env(safe-area-inset-bottom, 0px));
+
+    padding: 8px 9px;
+
+    gap: 7px;
+  }
+
+  .hero-avatar {
+    width: 22px;
+    height: 22px;
+
+    margin-left: -5px;
+  }
+
+  .hero-avatar svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  .hero-stat-content strong {
+    font-size: 15px;
+  }
+
+  .hero-stat-content span {
+    font-size: 7.5px;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+   <= 320px
+========================================================= */
+
+@media (max-width: 320px) {
+  .hero-content {
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-title {
+    font-size: clamp(27px, 9.6vw, 34px);
+    letter-spacing: 0;
+  }
+
+  .hero-description {
+    font-size: 11px;
+    max-width: 285px;
+  }
+
+  .hero-button {
+    min-width: 150px;
+    min-height: 43px;
+
+    font-size: 9.5px;
+  }
+
+  .hero-stat-card {
+    right: 14px;
+    bottom: calc(13px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (max-height: 600px) and (max-width: 900px) {
+  .hero {
+    min-height: 100dvh;
+    height: 100dvh;
+  }
+
+  .hero-content {
+    padding-top: 20px;
+    padding-bottom: calc(65px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-size: clamp(30px, 6.4vw, 48px);
+    line-height: 1.02;
+  }
+
+  .hero-description {
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    max-width: 390px;
+  }
+
+  .hero-button {
+    min-height: 42px;
+
+    margin-top: 14px;
+
+    font-size: 10px;
+  }
+
+  .hero-stat-card {
+    right: 18px;
+    bottom: calc(13px + env(safe-area-inset-bottom, 0px));
+
+    padding: 7px 9px;
+  }
+
+  .hero-avatar {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero-stat-content strong {
+    font-size: 15px;
+  }
+
+  .hero-stat-content span {
+    font-size: 7.5px;
+  }
+}
+
+/* =========================================================
+   EXTRA WIDE SCREEN
+========================================================= */
+
+@media (min-width: 2200px) {
+  .hero-content {
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+
+  .hero-left {
+    width: 720px;
+  }
+
+  .hero-title {
+    font-size: 108px;
+  }
+
+  .hero-description {
+    width: 540px;
+    font-size: 15px;
+  }
+
+  .hero-stat-card {
+    right: 7vw;
+    bottom: 90px;
+  }
+
+  .hero-scroll {
+    left: 7vw;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    transform: none;
+  }
+
+  .hero-button,
+  .hero-stat-card,
+  .hero-button::before,
+  .hero-button svg {
+    transition: none;
+  }
+}

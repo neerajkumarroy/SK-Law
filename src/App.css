@@ -1,0 +1,15 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+}
+
+/* Remove default Vite styles */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}

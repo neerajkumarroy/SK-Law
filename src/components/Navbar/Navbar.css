@@ -1,0 +1,956 @@
+/* =====================================================
+   SARIKA KUSHAWAHA LAW
+   PREMIUM LUXURY NAVBAR
+===================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+
+  color: #f8f7f2;
+
+  background: rgba(7, 30, 43, 0.94);
+
+  border-bottom: 1px solid rgba(214, 184, 120, 0.12);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+    background 0.5s ease,
+    box-shadow 0.5s ease,
+    border-color 0.5s ease;
+}
+
+/* =====================================================
+   GOLD TOP ACCENT
+===================================================== */
+
+.navbar-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(214, 184, 120, 0.15) 15%,
+    #d6b878 50%,
+    rgba(214, 184, 120, 0.15) 85%,
+    transparent 100%
+  );
+
+  opacity: 0.7;
+}
+
+/* =====================================================
+   SCROLLED NAVBAR
+===================================================== */
+
+.navbar-scrolled {
+  background: rgba(5, 25, 36, 0.97);
+
+  border-bottom-color: rgba(214, 184, 120, 0.2);
+
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+/* =====================================================
+   MAIN INNER
+===================================================== */
+
+.navbar-inner {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 88px;
+
+  padding-left: clamp(32px, 5vw, 82px);
+  padding-right: clamp(32px, 5vw, 82px);
+
+  display: flex;
+  align-items: center;
+
+  gap: 35px;
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.navbar-logo {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  height: 52px;
+
+  text-decoration: none;
+}
+
+.navbar-logo::after {
+  content: "";
+
+  position: absolute;
+
+  right: -18px;
+  top: 50%;
+
+  width: 1px;
+  height: 25px;
+
+  transform: translateY(-50%);
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(214, 184, 120, 0.45),
+    transparent
+  );
+}
+
+.navbar-logo img {
+  display: block;
+
+  width: auto;
+  height: 47px;
+
+  max-width: 190px;
+
+  object-fit: contain;
+}
+
+/* =====================================================
+   DESKTOP NAVIGATION
+===================================================== */
+
+.desktop-navigation {
+  display: flex;
+  align-items: center;
+
+  margin-left: auto;
+
+  gap: clamp(18px, 2vw, 32px);
+}
+
+/* =====================================================
+   NAV LINK
+===================================================== */
+
+.nav-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 10px 0;
+
+  color: rgba(248, 247, 242, 0.62);
+
+  text-decoration: none;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.015em;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.nav-link-active {
+  color: #ffffff;
+}
+
+/* =====================================================
+   ACTIVE GOLD LINE
+===================================================== */
+
+.nav-link::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 1px;
+
+  width: 0;
+  height: 1px;
+
+  background: #d6b878;
+
+  transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-link:hover::before,
+.nav-link-active::before {
+  width: 100%;
+}
+
+/* =====================================================
+   ACTIVE DOT
+===================================================== */
+
+.nav-active-dot {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  right: -7px;
+  top: 7px;
+
+  background: #d6b878;
+
+  box-shadow: 0 0 10px rgba(214, 184, 120, 0.8);
+}
+
+/* =====================================================
+   RIGHT SIDE
+===================================================== */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+
+  gap: 17px;
+
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   PHONE CONTACT
+===================================================== */
+
+.navbar-contact {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+.navbar-phone-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(214, 184, 120, 0.35);
+
+  border-radius: 50%;
+
+  color: #d6b878;
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.navbar-phone-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.navbar-contact:hover .navbar-phone-icon {
+  background: rgba(214, 184, 120, 0.08);
+
+  border-color: #d6b878;
+
+  transform: rotate(-8deg);
+}
+
+/* =====================================================
+   PHONE CONTENT
+===================================================== */
+
+.navbar-phone-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.navbar-phone-content small {
+  color: rgba(255, 255, 255, 0.38);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 7px;
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+}
+
+.navbar-phone-content strong {
+  color: #ffffff;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+}
+
+/* =====================================================
+   CONSULTATION
+===================================================== */
+
+.navbar-consultation {
+  position: relative;
+
+  min-height: 44px;
+
+  padding: 0 7px 0 18px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 15px;
+
+  color: #0a2a39;
+
+  background: #d6b878;
+
+  text-decoration: none;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.navbar-consultation::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 75%
+  );
+
+  transform: translateX(-120%);
+
+  transition: transform 0.7s ease;
+}
+
+.navbar-consultation:hover::before {
+  transform: translateX(120%);
+}
+
+.navbar-consultation:hover {
+  transform: translateY(-2px);
+
+  background: #e4cc98;
+}
+
+/* =====================================================
+   CONSULTATION ICON
+===================================================== */
+
+.consultation-icon {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background: #0a2a39;
+
+  transition: transform 0.35s ease;
+}
+
+.consultation-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.navbar-consultation:hover .consultation-icon {
+  transform: translate(2px, -2px);
+}
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.menu-button {
+  width: 43px;
+  height: 43px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(214, 184, 120, 0.3);
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease;
+}
+
+.menu-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.menu-button:hover,
+.menu-button-open {
+  border-color: #d6b878;
+
+  background: rgba(214, 184, 120, 0.08);
+
+  color: #d6b878;
+}
+
+/* =====================================================
+   MOBILE NAVIGATION
+===================================================== */
+
+.mobile-navigation {
+  display: none;
+
+  height: 0;
+  opacity: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(214, 184, 120, 0.07),
+      transparent 30%
+    ),
+    #061f2c;
+
+  border-top: 1px solid rgba(214, 184, 120, 0.13);
+}
+
+.mobile-navigation-inner {
+  width: 100%;
+  height: 100%;
+
+  padding: 25px clamp(24px, 7vw, 55px) 30px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   MOBILE MENU HEADING
+===================================================== */
+
+.mobile-menu-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 8px;
+}
+
+.mobile-menu-label,
+.mobile-menu-count {
+  color: #d6b878;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+.mobile-menu-line {
+  flex: 1;
+
+  height: 1px;
+
+  background: linear-gradient(90deg, rgba(214, 184, 120, 0.35), transparent);
+}
+
+.mobile-menu-count {
+  opacity: 0.45;
+}
+
+/* =====================================================
+   MOBILE LINKS
+===================================================== */
+
+.mobile-nav-list {
+  margin-top: 12px;
+}
+
+.mobile-nav-link {
+  position: relative;
+
+  min-height: 62px;
+
+  display: grid;
+
+  grid-template-columns: 40px 1fr 30px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  color: rgba(255, 255, 255, 0.72);
+
+  text-decoration: none;
+
+  opacity: 0;
+
+  transition:
+    color 0.3s ease,
+    padding-left 0.35s ease;
+}
+
+.mobile-nav-link:hover {
+  color: #ffffff;
+
+  padding-left: 5px;
+}
+
+.mobile-nav-link-active {
+  color: #ffffff;
+}
+
+/* =====================================================
+   MOBILE NUMBER
+===================================================== */
+
+.mobile-link-number {
+  color: #d6b878;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  opacity: 0.75;
+}
+
+/* =====================================================
+   MOBILE NAME
+===================================================== */
+
+.mobile-link-name {
+  font-family: "DM Serif Display", Georgia, serif;
+
+  font-size: 27px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.02em;
+}
+
+/* =====================================================
+   MOBILE ARROW
+===================================================== */
+
+.mobile-link-arrow {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #d6b878;
+
+  border: 1px solid rgba(214, 184, 120, 0.2);
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.mobile-link-arrow svg {
+  width: 15px;
+  height: 15px;
+}
+
+.mobile-nav-link:hover .mobile-link-arrow {
+  transform: translate(3px, -3px);
+
+  background: rgba(214, 184, 120, 0.08);
+}
+
+/* =====================================================
+   MOBILE FOOTER
+===================================================== */
+
+.mobile-menu-footer {
+  margin-top: auto;
+
+  opacity: 0;
+}
+
+/* =====================================================
+   FOOTER INFO
+===================================================== */
+
+.mobile-footer-info {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 13px;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+}
+
+.mobile-footer-dot {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #d6b878;
+}
+
+/* =====================================================
+   MOBILE CALL
+===================================================== */
+
+.mobile-call {
+  min-height: 58px;
+
+  padding: 8px 10px;
+
+  display: grid;
+
+  grid-template-columns: 38px 1fr 28px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border-top: 1px solid rgba(214, 184, 120, 0.2);
+
+  border-bottom: 1px solid rgba(214, 184, 120, 0.2);
+
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+.mobile-call-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(214, 184, 120, 0.35);
+
+  border-radius: 50%;
+
+  color: #d6b878;
+}
+
+.mobile-call-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mobile-call span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.mobile-call small {
+  color: rgba(255, 255, 255, 0.38);
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 7px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+}
+
+.mobile-call strong {
+  color: #ffffff;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.mobile-call > svg {
+  color: #d6b878;
+
+  width: 17px;
+  height: 17px;
+}
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (min-width: 1600px) {
+  .navbar-inner {
+    min-height: 94px;
+
+    padding-left: 5.5%;
+    padding-right: 5.5%;
+  }
+
+  .navbar-logo img {
+    height: 51px;
+  }
+
+  .desktop-navigation {
+    gap: 35px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .navbar-phone-content strong {
+    font-size: 10px;
+  }
+
+  .navbar-consultation {
+    min-height: 46px;
+    font-size: 11px;
+  }
+}
+
+/* =====================================================
+   LAPTOP
+===================================================== */
+
+@media (max-width: 1250px) {
+  .navbar-inner {
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+
+    gap: 22px;
+  }
+
+  .desktop-navigation {
+    gap: 17px;
+  }
+
+  .nav-link {
+    font-size: 10px;
+  }
+
+  .navbar-phone-content {
+    display: none;
+  }
+
+  .navbar-right {
+    gap: 12px;
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1050px) {
+  .desktop-navigation,
+  .navbar-contact,
+  .navbar-consultation {
+    display: none;
+  }
+
+  .navbar-inner {
+    min-height: 82px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .navbar-right {
+    margin-left: auto;
+  }
+
+  .menu-button {
+    display: flex;
+  }
+
+  .mobile-navigation {
+    display: block;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+  .navbar-inner {
+    min-height: 74px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .navbar-logo {
+    height: 43px;
+  }
+
+  .navbar-logo::after {
+    display: none;
+  }
+
+  .navbar-logo img {
+    height: 40px;
+
+    max-width: 165px;
+  }
+
+  .menu-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-navigation-inner {
+    padding: 22px 20px 24px;
+  }
+
+  .mobile-link-name {
+    font-size: 25px;
+  }
+
+  .mobile-nav-link {
+    min-height: 59px;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+  .navbar-inner {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .navbar-logo img {
+    height: 36px;
+    max-width: 145px;
+  }
+
+  .menu-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobile-navigation-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mobile-link-name {
+    font-size: 23px;
+  }
+
+  .mobile-nav-link {
+    min-height: 55px;
+  }
+
+  .mobile-footer-info {
+    font-size: 6px;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .nav-link,
+  .navbar-consultation,
+  .navbar-phone-icon,
+  .consultation-icon,
+  .mobile-nav-link,
+  .mobile-link-arrow {
+    transition: none;
+  }
+}
