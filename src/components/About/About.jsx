@@ -3,8 +3,9 @@ import { FiArrowRight, FiShield, FiUsers } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import AboutImage from "../../assets/images/about-lawyer.jpg";
+import AboutImage from "../../assets/images/about-lawyer.png";
 import "./About.css";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -180,10 +181,10 @@ const About = () => {
             </article>
           </div>
 
-          <a href="#contact" className="about-btn">
-            <span>Discover Our Approach</span>
+          <Link to="/about-us" className="about-btn">
+            <span>About More</span>
             <FiArrowRight />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

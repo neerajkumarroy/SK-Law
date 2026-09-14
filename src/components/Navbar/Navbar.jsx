@@ -1,12 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import {
-  FiArrowUpRight,
-  FiMenu,
-  FiX,
-  FiPhone,
-  FiChevronDown,
-} from "react-icons/fi";
+import { FiArrowUpRight, FiMenu, FiX, FiPhone } from "react-icons/fi";
 
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
@@ -15,56 +10,79 @@ const Navbar = () => {
   const navbarRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+
+  /*
+  =====================================================
+  NAVIGATION LINKS
+  =====================================================
+  */
 
   const navLinks = [
     {
       label: "Home",
-      href: "#home",
-      id: "home",
+      path: "/",
     },
     {
       label: "About Us",
-      href: "#about",
-      id: "about",
+      path: "/about-us",
     },
     {
       label: "Services",
-      href: "#services",
-      id: "services",
+      path: "/services",
     },
-
     {
-      label: "Blog",
-      href: "#blogs",
-      id: "blogs",
+      label: "Blogs",
+      path: "/blogs",
+    },
+    {
+      label: "FAQ",
+      path: "/faq",
     },
     {
       label: "Contact",
-      href: "#contact",
-      id: "contact",
+      path: "/contact-us",
     },
   ];
 
-  /* =====================================================
-     NAVBAR INTRO
-  ===================================================== */
+  /*
+  =====================================================
+  CHECK ACTIVE PAGE
+  =====================================================
+  */
+
+  const isActivePage = (path) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+
+    return location.pathname.startsWith(path);
+  };
+
+  /*
+  =====================================================
+  NAVBAR INTRO ANIMATION
+  =====================================================
+  */
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
+      const timeline = gsap.timeline({
         defaults: {
           ease: "power4.out",
         },
       });
 
-      tl.from(".navbar-logo", {
-        opacity: 0,
-        x: -25,
-        duration: 0.8,
-      })
+      timeline
+        .from(".navbar-logo", {
+          opacity: 0,
+          x: -25,
+          duration: 0.8,
+        })
         .from(
           ".nav-link",
           {
@@ -95,12 +113,16 @@ const Navbar = () => {
         );
     }, navbarRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
-  /* =====================================================
-     SCROLL EFFECT
-  ===================================================== */
+  /*
+  =====================================================
+  SCROLL EFFECT
+  =====================================================
+  */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,42 +140,31 @@ const Navbar = () => {
     };
   }, []);
 
-  /* =====================================================
-     ACTIVE SECTION
-  ===================================================== */
+  /*
+  =====================================================
+  CLOSE MOBILE MENU WHEN PAGE CHANGES
+  =====================================================
+  */
 
   useEffect(() => {
-    const sections = navLinks
-      .map((link) => document.getElementById(link.id))
-      .filter(Boolean);
+    setIsMenuOpen(false);
 
-    if (!sections.length) return;
+    /*
+      Every new page starts from top.
+    */
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSections = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [location.pathname]);
 
-        if (visibleSections.length) {
-          setActiveSection(visibleSections[0].target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: [0.1, 0.25, 0.5, 0.75],
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
-
-  /* =====================================================
-     CLOSE MOBILE MENU ON ESC
-  ===================================================== */
+  /*
+  =====================================================
+  ESCAPE KEY
+  =====================================================
+  */
 
   useEffect(() => {
     const handleEscape = (event) => {
@@ -169,20 +180,40 @@ const Navbar = () => {
     };
   }, []);
 
-  /* =====================================================
-     MOBILE MENU ANIMATION
-  ===================================================== */
+  /*
+  =====================================================
+  BODY SCROLL LOCK
+  =====================================================
+  */
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+
+    return () => {
+      document.body.classList.remove("menu-open");
+    };
+  }, [isMenuOpen]);
+
+  /*
+  =====================================================
+  MOBILE MENU ANIMATION
+  =====================================================
+  */
 
   useEffect(() => {
     if (!mobileMenuRef.current) return;
 
     const menu = mobileMenuRef.current;
+
     const links = menu.querySelectorAll(".mobile-nav-link");
+
     const footer = menu.querySelector(".mobile-menu-footer");
 
     if (isMenuOpen) {
-      document.body.classList.add("menu-open");
-
       gsap.set(menu, {
         display: "block",
       });
@@ -210,23 +241,23 @@ const Navbar = () => {
         },
       );
 
-      gsap.fromTo(
-        footer,
-        {
-          y: 20,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.45,
-          delay: 0.35,
-          ease: "power3.out",
-        },
-      );
+      if (footer) {
+        gsap.fromTo(
+          footer,
+          {
+            y: 20,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.45,
+            delay: 0.35,
+            ease: "power3.out",
+          },
+        );
+      }
     } else {
-      document.body.classList.remove("menu-open");
-
       gsap.to(menu, {
         height: 0,
         opacity: 0,
@@ -241,34 +272,62 @@ const Navbar = () => {
     }
   }, [isMenuOpen]);
 
-  /* =====================================================
-     SMOOTH NAVIGATION
-  ===================================================== */
+  /*
+  =====================================================
+  PAGE NAVIGATION
+  =====================================================
+  */
 
-  const handleNavigation = (event, href, id) => {
+  const handleNavigation = (event, path) => {
     event.preventDefault();
 
-    const target = document.querySelector(href);
-
-    if (!target) return;
-
-    setActiveSection(id);
     setIsMenuOpen(false);
 
-    const navbarHeight = navbarRef.current?.offsetHeight || 80;
+    /*
+      If user clicks the current page,
+      simply scroll to top.
+    */
 
-    const targetPosition =
-      target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+    if (location.pathname === path) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
 
-    window.scrollTo({
-      top: targetPosition,
-      behavior: "smooth",
-    });
+      return;
+    }
+
+    /*
+      Navigate to completely separate page.
+    */
+
+    navigate(path);
   };
+
+  /*
+  =====================================================
+  CLOSE MOBILE MENU
+  =====================================================
+  */
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  /*
+  =====================================================
+  PHONE NUMBER
+  =====================================================
+  */
+
+  const phoneNumber = "+911234567890";
+
+  /*
+  =====================================================
+  RENDER
+  =====================================================
+  */
 
   return (
     <header
@@ -286,34 +345,36 @@ const Navbar = () => {
             LOGO
         ================================================= */}
 
-        <a
-          href="#home"
+        <NavLink
+          to="/"
           className="navbar-logo"
-          onClick={(event) => handleNavigation(event, "#home", "home")}
+          onClick={(event) => handleNavigation(event, "/")}
           aria-label="Sarika Kushawaha Law - Home"
         >
           <img src={logo} alt="Sarika Kushawaha Law" />
-        </a>
+        </NavLink>
 
         {/* =================================================
             DESKTOP NAVIGATION
         ================================================= */}
 
         <nav className="desktop-navigation" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              className={`nav-link ${
-                activeSection === link.id ? "nav-link-active" : ""
-              }`}
-              onClick={(event) => handleNavigation(event, link.href, link.id)}
-            >
-              <span>{link.label}</span>
+          {navLinks.map((link) => {
+            const active = isActivePage(link.path);
 
-              {activeSection === link.id && <span className="nav-active-dot" />}
-            </a>
-          ))}
+            return (
+              <a
+                key={link.path}
+                href={link.path}
+                className={`nav-link ${active ? "nav-link-active" : ""}`}
+                onClick={(event) => handleNavigation(event, link.path)}
+              >
+                <span>{link.label}</span>
+
+                {active && <span className="nav-active-dot" />}
+              </a>
+            );
+          })}
         </nav>
 
         {/* =================================================
@@ -324,7 +385,7 @@ const Navbar = () => {
           {/* PHONE */}
 
           <a
-            href="tel:+911234567890"
+            href={`tel:${phoneNumber}`}
             className="navbar-contact"
             aria-label="Call Sarika Kushawaha Law"
           >
@@ -334,6 +395,7 @@ const Navbar = () => {
 
             <span className="navbar-phone-content">
               <small>CALL US</small>
+
               <strong>+91 12345 67890</strong>
             </span>
           </a>
@@ -341,9 +403,9 @@ const Navbar = () => {
           {/* CONSULTATION */}
 
           <a
-            href="#contact"
+            href="/contact"
             className="navbar-consultation"
-            onClick={(event) => handleNavigation(event, "#contact", "contact")}
+            onClick={(event) => handleNavigation(event, "/contact-us")}
           >
             <span>Consultation</span>
 
@@ -352,7 +414,7 @@ const Navbar = () => {
             </span>
           </a>
 
-          {/* MOBILE BUTTON */}
+          {/* MOBILE MENU BUTTON */}
 
           <button
             type="button"
@@ -379,32 +441,36 @@ const Navbar = () => {
 
             <span className="mobile-menu-line" />
 
-            <span className="mobile-menu-count">06</span>
+            <span className="mobile-menu-count">05</span>
           </div>
 
           {/* MOBILE LINKS */}
 
           <nav className="mobile-nav-list" aria-label="Mobile navigation">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.id}
-                href={link.href}
-                className={`mobile-nav-link ${
-                  activeSection === link.id ? "mobile-nav-link-active" : ""
-                }`}
-                onClick={(event) => handleNavigation(event, link.href, link.id)}
-              >
-                <span className="mobile-link-number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+            {navLinks.map((link, index) => {
+              const active = isActivePage(link.path);
 
-                <span className="mobile-link-name">{link.label}</span>
+              return (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  className={`mobile-nav-link ${
+                    active ? "mobile-nav-link-active" : ""
+                  }`}
+                  onClick={(event) => handleNavigation(event, link.path)}
+                >
+                  <span className="mobile-link-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                <span className="mobile-link-arrow">
-                  <FiArrowUpRight />
-                </span>
-              </a>
-            ))}
+                  <span className="mobile-link-name">{link.label}</span>
+
+                  <span className="mobile-link-arrow">
+                    <FiArrowUpRight />
+                  </span>
+                </a>
+              );
+            })}
           </nav>
 
           {/* MOBILE FOOTER */}
@@ -419,7 +485,7 @@ const Navbar = () => {
             </div>
 
             <a
-              href="tel:+911234567890"
+              href={`tel:${phoneNumber}`}
               className="mobile-call"
               onClick={closeMenu}
             >
@@ -429,6 +495,7 @@ const Navbar = () => {
 
               <span>
                 <small>Speak With Us</small>
+
                 <strong>+91 12345 67890</strong>
               </span>
 

@@ -1,146 +1,120 @@
-import React, { useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, CalendarDays, Clock3 } from "lucide-react";
-
-import { gsap } from "gsap";
+import { useEffect, useMemo, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import Navbar from "../Navbar/Navbar";
-import BlogsData from "../../data/Blogs";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCalendarAlt,
+  FaClock,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaLink,
+  FaTwitter,
+} from "react-icons/fa";
 
+import blogs from "../../data/Blogs";
 import "./BlogDetails.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const BlogDetails = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const pageRef = useRef(null);
 
-  const blog = BlogsData.find((item) => item.slug === slug);
+  const blog = useMemo(() => blogs.find((item) => item.slug === slug), [slug]);
 
-  /* =========================================
-     GO BACK TO BLOG SECTION
-  ========================================= */
+  /*
+   * Related blogs:
+   * Same category ko priority + baaki blogs
+   */
+  const relatedBlogs = useMemo(() => {
+    if (!blog) return [];
 
-  const goToBlogSection = (e) => {
-    e.preventDefault();
+    const sameCategory = blogs.filter(
+      (item) => item.slug !== blog.slug && item.category === blog.category,
+    );
 
-    navigate("/");
+    const others = blogs.filter(
+      (item) => item.slug !== blog.slug && item.category !== blog.category,
+    );
 
-    setTimeout(() => {
-      const blogSection = document.getElementById("blogs");
-
-      if (blogSection) {
-        window.scrollTo({
-          top: blogSection.offsetTop - 80,
-          behavior: "smooth",
-        });
-      }
-    }, 250);
-  };
-
-  /* =========================================
-     GSAP
-  ========================================= */
+    return [...sameCategory, ...others].slice(0, 3);
+  }, [blog]);
 
   useEffect(() => {
     if (!blog) return;
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-
-      tl.from(".blog-detail-image-wrap", {
-        opacity: 0,
-        y: 50,
-        scale: 0.97,
-        duration: 1,
-        ease: "power4.out",
-      })
-        .from(
-          ".blog-detail-back",
-          {
-            opacity: 0,
-            x: -25,
-            duration: 0.55,
-            ease: "power3.out",
-          },
-          "-=0.5",
-        )
-        .from(
-          ".blog-detail-category",
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.55,
-            ease: "power3.out",
-          },
-          "-=0.25",
-        )
-        .from(
-          ".blog-detail-title",
-          {
-            opacity: 0,
-            y: 55,
-            duration: 0.9,
-            ease: "power4.out",
-          },
-          "-=0.25",
-        )
-        .from(
-          ".blog-detail-excerpt",
-          {
-            opacity: 0,
-            y: 25,
-            duration: 0.6,
-            ease: "power3.out",
-          },
-          "-=0.4",
-        )
-        .from(
-          ".blog-detail-meta",
-          {
-            opacity: 0,
-            y: 15,
-            duration: 0.5,
-            ease: "power3.out",
-          },
-          "-=0.3",
-        );
-
-      gsap.to(".blog-detail-image-wrap img", {
-        yPercent: 8,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".blog-detail-image-wrap",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
         },
       });
 
-      gsap.utils.toArray(".blog-content-block").forEach((block) => {
-        gsap.from(block, {
+      tl.from(".blog-details-kicker", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+      })
+        .from(
+          ".blog-details-title",
+          {
+            y: 45,
+            opacity: 0,
+            duration: 0.9,
+          },
+          "-=0.35",
+        )
+        .from(
+          ".blog-details-meta",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+          },
+          "-=0.45",
+        )
+        .from(
+          ".blog-details-hero-image",
+          {
+            scale: 1.06,
+            opacity: 0,
+            duration: 1.1,
+          },
+          "-=0.5",
+        );
+
+      gsap.utils.toArray(".article-reveal").forEach((element) => {
+        gsap.from(element, {
+          y: 35,
           opacity: 0,
-          y: 50,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: block,
-            start: "top 82%",
+            trigger: element,
+            start: "top 88%",
+            once: true,
           },
         });
       });
 
-      gsap.from(".blog-bottom-navigation", {
-        opacity: 0,
+      gsap.from(".related-blog-card", {
         y: 35,
-        duration: 0.8,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: ".blog-bottom-navigation",
-          start: "top 85%",
+          trigger: ".related-blogs-grid",
+          start: "top 82%",
+          once: true,
         },
       });
     }, pageRef);
@@ -148,199 +122,328 @@ const BlogDetails = () => {
     return () => ctx.revert();
   }, [blog]);
 
-  /* =========================================
-     404
-  ========================================= */
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+    } catch (error) {
+      console.error("Unable to copy link", error);
+    }
+  };
 
   if (!blog) {
     return (
-      <>
-        <Navbar />
-
-        <main className="blog-not-found">
+      <main className="blog-not-found">
+        <div className="blog-not-found-inner">
           <span>404</span>
 
-          <h1>Article Not Found</h1>
+          <h1>Article not found</h1>
 
-          <p>The article you are looking for may have been moved or removed.</p>
+          <p>
+            The article you are looking for may have been moved or is no longer
+            available.
+          </p>
 
-          <button
-            type="button"
-            onClick={goToBlogSection}
-            className="not-found-link"
-          >
-            <ArrowLeft size={17} />
-            Back to Articles
-          </button>
-        </main>
-      </>
+          <Link to="/blogs" className="blog-back-button">
+            <FaArrowLeft />
+            <span>Back to Blogs</span>
+          </Link>
+        </div>
+      </main>
     );
   }
 
   return (
-    <>
-      <Navbar />
-
-      <main ref={pageRef} className="blog-details-page">
-        {/* =========================================
-            FEATURE IMAGE — FIRST
-        ========================================= */}
-
-        <section className="blog-detail-image-section">
-          <div className="blog-detail-wide">
-            <div className="blog-detail-image-wrap">
-              <img src={blog.image} alt={blog.title} />
-
-              <div className="blog-image-overlay" />
-
-              <div className="blog-image-top-info">
-                <span>SKL</span>
-                <span>LEGAL INSIGHTS</span>
-              </div>
-
-              <div className="blog-image-number">
-                {String(blog.id).padStart(2, "0")}
-              </div>
-
-              <div className="image-corner image-corner-tl" />
-              <div className="image-corner image-corner-tr" />
-              <div className="image-corner image-corner-bl" />
-              <div className="image-corner image-corner-br" />
-            </div>
+    <main ref={pageRef} className="blog-details-page">
+      {/* =========================================
+          ARTICLE HERO
+      ========================================== */}
+      <section className="blog-details-hero">
+        <div className="blog-details-hero-inner">
+          <div className="blog-details-kicker">
+            <span className="kicker-line"></span>
+            <span>{blog.category}</span>
           </div>
-        </section>
 
-        {/* =========================================
-            ARTICLE INTRO
-        ========================================= */}
+          <h1 className="blog-details-title">{blog.title}</h1>
 
-        <section className="blog-detail-intro">
-          <div className="blog-detail-container">
-            {/* ONLY TOP BACK BUTTON */}
+          {blog.excerpt && (
+            <p className="blog-details-excerpt">{blog.excerpt}</p>
+          )}
 
-            <button
-              type="button"
-              onClick={goToBlogSection}
-              className="blog-detail-back"
-            >
-              <ArrowLeft size={16} />
-              <span>Back to Articles</span>
-            </button>
-
-            <div className="blog-detail-category">
-              <span className="category-line" />
-
-              <span>{blog.category}</span>
-
-              <span className="category-line" />
+          <div className="blog-details-meta">
+            <div className="blog-meta-item">
+              <FaCalendarAlt />
+              <span>{blog.date}</span>
             </div>
 
-            <h1 className="blog-detail-title">{blog.title}</h1>
+            <span className="meta-divider"></span>
 
-            <p className="blog-detail-excerpt">{blog.excerpt}</p>
-
-            <div className="blog-detail-meta">
-              <div>
-                <CalendarDays size={15} />
-                <span>{blog.date}</span>
-              </div>
-
-              <span className="meta-divider" />
-
-              <div>
-                <Clock3 size={15} />
-                <span>5 min read</span>
-              </div>
+            <div className="blog-meta-item">
+              <FaClock />
+              <span>{blog.readTime || blog.read}</span>
             </div>
-          </div>
-        </section>
 
-        {/* =========================================
-            CONTENT
-        ========================================= */}
+            {blog.author && (
+              <>
+                <span className="meta-divider"></span>
 
-        <section className="blog-content-section">
-          <div className="blog-content-layout">
-            {/* SIDEBAR */}
-
-            <aside className="blog-detail-sidebar">
-              <div className="sidebar-sticky">
-                <span className="sidebar-label">ARTICLE</span>
-
-                <div className="sidebar-number">
-                  {String(blog.id).padStart(2, "0")}
+                <div className="blog-author">
+                  <span className="author-label">Written by</span>
+                  <strong>{blog.author}</strong>
                 </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
 
-                <div className="sidebar-line" />
+      {/* =========================================
+          FEATURE IMAGE
+      ========================================== */}
+      <section className="blog-details-image-section">
+        <div className="blog-details-image-wrap">
+          <img
+            src={blog.image}
+            alt={blog.title}
+            className="blog-details-hero-image"
+          />
 
-                <span className="sidebar-reading">5 MIN READ</span>
+          <div className="image-category">{blog.category}</div>
+        </div>
+      </section>
+
+      {/* =========================================
+          ARTICLE BODY
+      ========================================== */}
+      <section className="blog-article-section">
+        <div className="blog-article-layout">
+          {/* LEFT SHARE */}
+          <aside className="article-sidebar">
+            <div className="sidebar-sticky">
+              <span className="share-label">Share</span>
+
+              <div className="share-buttons">
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                    window.location.href,
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Share on Facebook"
+                >
+                  <FaFacebookF />
+                </a>
+
+                <a
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                    window.location.href,
+                  )}&text=${encodeURIComponent(blog.title)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Share on Twitter"
+                >
+                  <FaTwitter />
+                </a>
+
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                    window.location.href,
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Share on LinkedIn"
+                >
+                  <FaLinkedinIn />
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  aria-label="Copy article link"
+                >
+                  <FaLink />
+                </button>
               </div>
-            </aside>
+            </div>
+          </aside>
 
-            {/* ARTICLE */}
+          {/* ARTICLE */}
+          <article className="blog-article-content">
+            <div className="article-intro article-reveal">
+              <span className="article-dropcap">{blog.title?.charAt(0)}</span>
 
-            <article className="blog-content">
-              {blog.content.map((section, index) => (
-                <div className="blog-content-block" key={index}>
-                  <div className="content-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
+              <p>{blog.excerpt}</p>
+            </div>
 
-                  <div className="content-text">
-                    <h2>{section.heading}</h2>
+            {Array.isArray(blog.content) ? (
+              blog.content.map((section, index) => (
+                <div
+                  className="article-content-block article-reveal"
+                  key={`${section.heading}-${index}`}
+                >
+                  {section.heading && <h2>{section.heading}</h2>}
 
-                    {section.paragraphs.map((paragraph, paragraphIndex) => (
+                  {Array.isArray(section.paragraphs) ? (
+                    section.paragraphs.map((paragraph, paragraphIndex) => (
                       <p key={paragraphIndex}>{paragraph}</p>
-                    ))}
-                  </div>
+                    ))
+                  ) : section.paragraph ? (
+                    <p>{section.paragraph}</p>
+                  ) : null}
                 </div>
-              ))}
-
-              {/* =====================================
-                  BOTTOM MESSAGE
-              ===================================== */}
-
-              <div className="blog-detail-share">
-                <div>
-                  <span>LEGAL INSIGHT</span>
-
-                  <strong>Knowledge creates confidence.</strong>
-                </div>
+              ))
+            ) : (
+              <div className="article-content-block article-reveal">
+                <p>{blog.content}</p>
               </div>
-            </article>
-          </div>
-        </section>
+            )}
 
-        {/* =========================================
-            BOTTOM CTA
-        ========================================= */}
+            {/* ARTICLE END */}
+            <div className="article-ending article-reveal">
+              <div className="ending-rule"></div>
 
-        <section className="blog-detail-cta">
-          <div className="blog-detail-cta-inner">
-            <div className="cta-content">
-              <span className="cta-small">CONTINUE READING</span>
+              <p>
+                For legal guidance tailored to your circumstances, professional
+                advice should be considered based on the specific facts of your
+                matter.
+              </p>
+            </div>
+          </article>
+
+          {/* RIGHT ARTICLE INFO */}
+          <aside className="article-info-sidebar">
+            <div className="info-card">
+              <span className="info-card-label">Article information</span>
+
+              <div className="info-row">
+                <span>Category</span>
+                <strong>{blog.category}</strong>
+              </div>
+
+              <div className="info-row">
+                <span>Published</span>
+                <strong>{blog.date}</strong>
+              </div>
+
+              <div className="info-row">
+                <span>Reading time</span>
+                <strong>{blog.readTime || blog.read}</strong>
+              </div>
+
+              {blog.author && (
+                <div className="info-row">
+                  <span>Author</span>
+                  <strong>{blog.author}</strong>
+                </div>
+              )}
+            </div>
+
+            <Link to="/contact-us" className="sidebar-consultation">
+              <span>
+                Need legal
+                <br />
+                guidance?
+              </span>
+
+              <FaArrowRight />
+            </Link>
+          </aside>
+        </div>
+      </section>
+
+      {/* =========================================
+          BACK TO BLOGS
+      ========================================== */}
+      <section className="blog-navigation">
+        <Link to="/blogs" className="back-to-blogs">
+          <span className="back-icon">
+            <FaArrowLeft />
+          </span>
+
+          <span>
+            <small>Explore more</small>
+            <strong>Back to all articles</strong>
+          </span>
+        </Link>
+      </section>
+
+      {/* =========================================
+          RELATED BLOGS
+      ========================================== */}
+      {relatedBlogs.length > 0 && (
+        <section className="related-blogs">
+          <div className="related-blogs-heading">
+            <div>
+              <span className="section-kicker">Continue reading</span>
 
               <h2>
-                Explore More
-                <br />
-                <span>Legal Insights.</span>
+                More from the
+                <em> journal.</em>
               </h2>
             </div>
 
-            {/* ONLY BOTTOM BUTTON */}
+            <Link to="/blogs" className="all-articles-link">
+              <span>View all articles</span>
+              <FaArrowRight />
+            </Link>
+          </div>
 
-            <button
-              type="button"
-              onClick={goToBlogSection}
-              className="cta-button"
-            >
-              <span>Back to Articles</span>
-              <ArrowUpRight size={19} />
-            </button>
+          <div className="related-blogs-grid">
+            {relatedBlogs.map((relatedBlog) => (
+              <Link
+                to={`/blog/${relatedBlog.slug}`}
+                className="related-blog-card"
+                key={relatedBlog.id}
+              >
+                <div className="related-blog-image">
+                  <img src={relatedBlog.image} alt={relatedBlog.title} />
+
+                  <span>{relatedBlog.category}</span>
+                </div>
+
+                <div className="related-blog-content">
+                  <div className="related-blog-meta">
+                    <span>{relatedBlog.date}</span>
+                    <span>{relatedBlog.readTime || relatedBlog.read}</span>
+                  </div>
+
+                  <h3>{relatedBlog.title}</h3>
+
+                  <div className="related-blog-read">
+                    <span>Read article</span>
+                    <FaArrowRight />
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
-      </main>
-    </>
+      )}
+
+      {/* =========================================
+          FINAL CTA
+      ========================================== */}
+      <section className="blog-details-cta">
+        <div className="cta-decoration"></div>
+
+        <div className="blog-details-cta-inner">
+          <div>
+            <span className="cta-kicker">Need legal assistance?</span>
+
+            <h2>
+              Let&apos;s discuss
+              <br />
+              <em>your matter.</em>
+            </h2>
+          </div>
+
+          <Link to="/contact-us" className="cta-button">
+            <span>Book a consultation</span>
+            <FaArrowRight />
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 };
 

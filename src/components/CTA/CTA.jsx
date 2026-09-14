@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import lawyerImage from "../../assets/images/user-3.png";
 import "./CTA.css";
-
+import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 const CTA = () => {
@@ -180,10 +180,10 @@ const CTA = () => {
               />
             </a>
 
-            <a href="#contact" className="cta-secondary">
+            <Link to="/contact-us" className="cta-secondary">
               Request Consultation
               <ArrowUpRight size={15} strokeWidth={1.7} />
-            </a>
+            </Link>
           </div>
 
           <div className="cta-trust">

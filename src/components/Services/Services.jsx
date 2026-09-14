@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 
 import "./Services.css";
 import services from "../../data/services";
@@ -440,18 +441,10 @@ const Services = () => {
                 ================================= */}
 
                 <div className="services-card-footer">
-                  <a
-                    href={service.link || "#"}
-                    className="services-learn"
-                    onClick={(event) => {
-                      if (!service.link) {
-                        event.preventDefault();
-                      }
-                    }}
-                  >
+                  <Link to="/services" className="services-learn">
                     <span>Explore Service</span>
                     <ArrowUpRight size={17} strokeWidth={1.5} />
-                  </a>
+                  </Link>
 
                   <div className="services-card-arrow">
                     <ArrowRight size={18} strokeWidth={1.5} />

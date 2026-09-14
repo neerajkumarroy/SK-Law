@@ -39,19 +39,26 @@ img {
 
 /* =========================================================
    HERO
+   ONLY CHANGE:
+   Hero starts BELOW the fixed/absolute navbar
 ========================================================= */
 
 .hero {
   position: relative;
 
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
 
-  height: 100dvh;
-  min-height: 100dvh;
+  /* Navbar offset */
+  margin-top: 88px;
 
-  margin: 0;
+  height: calc(100vh - 88px);
+  min-height: calc(100vh - 88px);
+
+  height: calc(100dvh - 88px);
+  min-height: calc(100dvh - 88px);
+
+  margin-bottom: 0;
+
   padding: 0;
 
   display: flex;
@@ -268,8 +275,6 @@ img {
 
 /* =========================================================
    TITLE
-   Fluid sizing + gentle tracking so the serif display face
-   never crowds or overflows at narrow widths.
 ========================================================= */
 
 .hero-title {
@@ -292,7 +297,6 @@ img {
 
   line-height: 1;
 
-  /* a serif display face needs open, not tight, tracking */
   letter-spacing: -0.01em;
 
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
@@ -583,6 +587,16 @@ img {
 ========================================================= */
 
 @media (min-width: 1920px) {
+  .hero {
+    margin-top: 88px;
+
+    height: calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
+
+    height: calc(100dvh - 88px);
+    min-height: calc(100dvh - 88px);
+  }
+
   .hero-content {
     padding-left: 6vw;
     padding-right: 6vw;
@@ -622,6 +636,16 @@ img {
 ========================================================= */
 
 @media (min-width: 1600px) and (max-width: 1919px) {
+  .hero {
+    margin-top: 88px;
+
+    height: calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
+
+    height: calc(100dvh - 88px);
+    min-height: calc(100dvh - 88px);
+  }
+
   .hero-content {
     padding-left: 5vw;
     padding-right: 5vw;
@@ -654,6 +678,16 @@ img {
 ========================================================= */
 
 @media (min-width: 1201px) and (max-width: 1599px) {
+  .hero {
+    margin-top: 84px;
+
+    height: calc(100vh - 84px);
+    min-height: calc(100vh - 84px);
+
+    height: calc(100dvh - 84px);
+    min-height: calc(100dvh - 84px);
+  }
+
   .hero-content {
     padding-left: 4.5vw;
     padding-right: 4.5vw;
@@ -694,7 +728,13 @@ img {
 
 @media (min-width: 1025px) and (max-width: 1200px) {
   .hero {
-    min-height: 100dvh;
+    margin-top: 80px;
+
+    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
+
+    height: calc(100dvh - 80px);
+    min-height: calc(100dvh - 80px);
   }
 
   .hero-content {
@@ -737,7 +777,13 @@ img {
 
 @media (min-width: 901px) and (max-width: 1024px) {
   .hero {
-    min-height: 100dvh;
+    margin-top: 76px;
+
+    height: calc(100vh - 76px);
+    min-height: calc(100vh - 76px);
+
+    height: calc(100dvh - 76px);
+    min-height: calc(100dvh - 76px);
   }
 
   .hero-content {
@@ -786,8 +832,10 @@ img {
 
 @media (min-width: 601px) and (max-width: 900px) {
   .hero {
-    height: 100dvh;
-    min-height: 100dvh;
+    height: calc(100dvh - 74px);
+    min-height: calc(100dvh - 74px);
+
+    margin-top: 74px;
   }
 
   .hero-content {
@@ -857,11 +905,13 @@ img {
   .hero {
     width: 100%;
 
-    height: 100svh;
-    min-height: 100svh;
+    margin-top: 70px;
 
-    height: 100dvh;
-    min-height: 100dvh;
+    height: calc(100svh - 70px);
+    min-height: calc(100svh - 70px);
+
+    height: calc(100dvh - 70px);
+    min-height: calc(100dvh - 70px);
   }
 
   .hero-image {
@@ -989,18 +1039,16 @@ img {
 
 @media (min-width: 376px) and (max-width: 480px) {
   .hero {
-    height: 100svh;
-    min-height: 100svh;
+    margin-top: 68px;
 
-    height: 100dvh;
-    min-height: 100dvh;
+    height: calc(100svh - 68px);
+    min-height: calc(100svh - 68px);
+
+    height: calc(100dvh - 68px);
+    min-height: calc(100dvh - 68px);
   }
 
   .hero-image {
-    /*
-      Move image slightly right so
-      lawyer remains visible.
-    */
     object-position: 68% center;
 
     transform: scale(1.08);
@@ -1116,11 +1164,13 @@ img {
 
 @media (max-width: 375px) {
   .hero {
-    height: 100svh;
-    min-height: 100svh;
+    margin-top: 64px;
 
-    height: 100dvh;
-    min-height: 100dvh;
+    height: calc(100svh - 64px);
+    min-height: calc(100svh - 64px);
+
+    height: calc(100dvh - 64px);
+    min-height: calc(100dvh - 64px);
   }
 
   .hero-image {
@@ -1167,11 +1217,6 @@ img {
     width: 19px;
   }
 
-  /*
-    Fluid, not fixed: prevents the longest line
-    ("Representation.") from ever outgrowing the
-    viewport and getting clipped by overflow-x:hidden.
-  */
   .hero-title {
     font-size: clamp(30px, 10.2vw, 42px);
 
@@ -1248,19 +1293,32 @@ img {
 ========================================================= */
 
 @media (max-width: 320px) {
+  .hero {
+    margin-top: 60px;
+
+    height: calc(100svh - 60px);
+    min-height: calc(100svh - 60px);
+
+    height: calc(100dvh - 60px);
+    min-height: calc(100dvh - 60px);
+  }
+
   .hero-content {
     padding-left: 14px;
     padding-right: 14px;
+
     padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
   }
 
   .hero-title {
     font-size: clamp(27px, 9.6vw, 34px);
+
     letter-spacing: 0;
   }
 
   .hero-description {
     font-size: 11px;
+
     max-width: 285px;
   }
 
@@ -1273,6 +1331,7 @@ img {
 
   .hero-stat-card {
     right: 14px;
+
     bottom: calc(13px + env(safe-area-inset-bottom, 0px));
   }
 }
@@ -1283,12 +1342,15 @@ img {
 
 @media (max-height: 600px) and (max-width: 900px) {
   .hero {
-    min-height: 100dvh;
-    height: 100dvh;
+    margin-top: 62px;
+
+    min-height: calc(100dvh - 62px);
+    height: calc(100dvh - 62px);
   }
 
   .hero-content {
     padding-top: 20px;
+
     padding-bottom: calc(65px + env(safe-area-inset-bottom, 0px));
   }
 
@@ -1298,6 +1360,7 @@ img {
 
   .hero-title {
     font-size: clamp(30px, 6.4vw, 48px);
+
     line-height: 1.02;
   }
 
@@ -1321,6 +1384,7 @@ img {
 
   .hero-stat-card {
     right: 18px;
+
     bottom: calc(13px + env(safe-area-inset-bottom, 0px));
 
     padding: 7px 9px;
@@ -1345,6 +1409,16 @@ img {
 ========================================================= */
 
 @media (min-width: 2200px) {
+  .hero {
+    margin-top: 88px;
+
+    height: calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
+
+    height: calc(100dvh - 88px);
+    min-height: calc(100dvh - 88px);
+  }
+
   .hero-content {
     padding-left: 7vw;
     padding-right: 7vw;
@@ -1360,11 +1434,13 @@ img {
 
   .hero-description {
     width: 540px;
+
     font-size: 15px;
   }
 
   .hero-stat-card {
     right: 7vw;
+
     bottom: 90px;
   }
 

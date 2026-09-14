@@ -1,332 +1,182 @@
 import { useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight, MoveUpRight, ArrowLeft } from "lucide-react";
-
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import BlogsData from "../../data/Blogs";
+import { FaArrowRight, FaCalendarAlt, FaClock } from "react-icons/fa";
+
+import blogs from "../../data/Blogs";
+
 import "./Blogs.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Blogs = () => {
   const sectionRef = useRef(null);
-  const location = useLocation();
-
-  // Check whether this is the complete blogs page
-  const isBlogsPage = location.pathname === "/blogs";
-
-  // Home = only 3 blogs
-  // Blogs page = all blogs
-  const visibleBlogs = isBlogsPage ? BlogsData : BlogsData.slice(0, 3);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".blog-card");
+      /* =========================================
+         HEADER
+      ========================================= */
 
-      if (!cards.length) return;
-
-      const tl = gsap.timeline({
+      gsap.from(".home-blog-header", {
+        opacity: 0,
+        y: 55,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: ".blogs-section",
-          start: "top 75%",
+          trigger: ".home-blogs-section",
+          start: "top 78%",
           once: true,
         },
       });
 
-      tl.from(".blogs-eyebrow", {
+      /* =========================================
+         BLOG CARDS
+      ========================================= */
+
+      gsap.from(".home-blog-card", {
         opacity: 0,
-        x: -30,
-        duration: 0.7,
+        y: 55,
+        duration: 0.9,
+        stagger: 0.16,
         ease: "power3.out",
-      })
-        .from(
-          ".blogs-title",
-          {
-            opacity: 0,
-            y: 55,
-            duration: 1,
-            ease: "power4.out",
-          },
-          "-=0.45",
-        )
-        .from(
-          ".blogs-intro",
-          {
-            opacity: 0,
-            y: 25,
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          "-=0.55",
-        )
-        .from(
-          ".blogs-action",
-          {
-            opacity: 0,
-            x: 30,
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          "-=0.55",
-        )
-        .from(
-          cards,
-          {
-            opacity: 0,
-            y: 80,
-            scale: 0.96,
-            duration: 0.9,
-            stagger: 0.12,
-            ease: "power4.out",
-          },
-          "-=0.35",
-        );
+        scrollTrigger: {
+          trigger: ".home-blog-grid",
+          start: "top 82%",
+          once: true,
+        },
+      });
 
-      // =========================
-      // CARD HOVER
-      // =========================
+      /* =========================================
+         BOTTOM CTA
+      ========================================= */
 
-      cards.forEach((card) => {
-        const image = card.querySelector(".blog-image");
-        const imageWrap = card.querySelector(".blog-image-wrapper");
-        const arrow = card.querySelector(".blog-card-arrow");
-        const line = card.querySelector(".blog-card-gold-line");
-
-        if (!image || !imageWrap || !arrow || !line) return;
-
-        const enter = () => {
-          gsap.to(image, {
-            scale: 1.08,
-            duration: 0.9,
-            ease: "power3.out",
-          });
-
-          gsap.to(imageWrap, {
-            y: -6,
-            duration: 0.45,
-            ease: "power3.out",
-          });
-
-          gsap.to(arrow, {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.4,
-            ease: "back.out(1.7)",
-          });
-
-          gsap.to(line, {
-            scaleX: 1,
-            duration: 0.55,
-            ease: "power3.out",
-          });
-        };
-
-        const leave = () => {
-          gsap.to(image, {
-            scale: 1,
-            duration: 0.9,
-            ease: "power3.out",
-          });
-
-          gsap.to(imageWrap, {
-            y: 0,
-            duration: 0.45,
-            ease: "power3.out",
-          });
-
-          gsap.to(arrow, {
-            opacity: 0,
-            scale: 0.75,
-            rotation: -12,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-
-          gsap.to(line, {
-            scaleX: 0,
-            duration: 0.45,
-            ease: "power3.out",
-          });
-        };
-
-        card.addEventListener("mouseenter", enter);
-        card.addEventListener("mouseleave", leave);
-
-        card._enter = enter;
-        card._leave = leave;
+      gsap.from(".home-blog-bottom", {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".home-blog-bottom",
+          start: "top 90%",
+          once: true,
+        },
       });
     }, sectionRef);
 
-    return () => {
-      gsap.utils.toArray(".blog-card").forEach((card) => {
-        if (card._enter) {
-          card.removeEventListener("mouseenter", card._enter);
-        }
+    return () => ctx.revert();
+  }, []);
 
-        if (card._leave) {
-          card.removeEventListener("mouseleave", card._leave);
-        }
-      });
-
-      ctx.revert();
-    };
-  }, [isBlogsPage]);
+  /*
+    Only first 3 blogs will be displayed
+    on the Home Page.
+  */
+  const homeBlogs = blogs.slice(0, 3);
 
   return (
-    <section
-      ref={sectionRef}
-      className={`blogs-section ${isBlogsPage ? "blogs-full-page" : ""}`}
-      id="blogs"
-    >
-      <div className="blogs-container">
-        {/* =========================
+    <section ref={sectionRef} className="home-blogs-section" id="blogs">
+      <div className="home-blogs-container">
+        {/* =========================================
             HEADER
-        ========================= */}
+        ========================================= */}
 
-        <div className="blogs-header">
-          <div className="blogs-heading-block">
-            <div className="blogs-eyebrow">
-              <span className="blogs-eyebrow-line" />
+        <div className="home-blog-header">
+          <div className="home-blog-eyebrow">
+            <span className="home-blog-eyebrow-line"></span>
 
-              <span>{isBlogsPage ? "Legal Journal" : "Legal Journal"}</span>
-
-              <span className="blogs-eyebrow-dot" />
-            </div>
-
-            <h1 className="blogs-title">
-              Knowledge That
-              <br />
-              <span>Protects Your Future.</span>
-            </h1>
+            <span>Legal Insights</span>
           </div>
 
-          <div className="blogs-header-right">
-            <p className="blogs-intro">
-              Explore thoughtful perspectives, practical legal guidance and
-              important updates designed to help you make informed decisions
-              with greater confidence.
-            </p>
+          <h2 className="home-blog-title">
+            Knowledge that helps <span>you move forward.</span>
+          </h2>
 
-            {!isBlogsPage && (
-              <Link to="/blogs" className="blogs-action">
-                <span>Explore All Articles</span>
-
-                <span className="blogs-action-icon">
-                  <ArrowUpRight size={17} />
-                </span>
-              </Link>
-            )}
-          </div>
+          <p className="home-blog-intro">
+            Explore practical legal insights, guidance and perspectives designed
+            to help you better understand your rights and make informed
+            decisions.
+          </p>
         </div>
 
-        {/* =========================
-            PAGE META
-        ========================= */}
-
-        <div className="blogs-meta">
-          <span>INSIGHTS / 2026</span>
-
-          <span className="blogs-meta-center">
-            <i />
-            Carefully Considered.
-            <i />
-          </span>
-
-          <span>
-            {isBlogsPage ? `${BlogsData.length} ARTICLES` : "SCROLL TO EXPLORE"}
-          </span>
-        </div>
-
-        {/* =========================
+        {/* =========================================
             BLOG GRID
-        ========================= */}
+        ========================================= */}
 
-        <div className="blogs-grid">
-          {visibleBlogs.map((blog, index) => (
-            <Link to={`/blog/${blog.slug}`} className="blog-card" key={blog.id}>
+        <div className="home-blog-grid">
+          {homeBlogs.map((blog) => (
+            <article className="home-blog-card" key={blog.id}>
               {/* IMAGE */}
 
-              <div className="blog-image-wrapper">
-                <img src={blog.image} alt={blog.title} className="blog-image" />
+              <Link to={`/blog/${blog.slug}`} className="home-blog-image">
+                <img src={blog.image} alt={blog.title} loading="lazy" />
 
-                <div className="blog-image-overlay" />
+                <span className="home-blog-category">{blog.category}</span>
 
-                <div className="blog-card-index">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div className="blog-category">{blog.category}</div>
-
-                <div className="blog-card-arrow">
-                  <MoveUpRight size={20} />
-                </div>
-              </div>
+                <span className="home-blog-image-arrow">
+                  <FaArrowRight />
+                </span>
+              </Link>
 
               {/* CONTENT */}
 
-              <div className="blog-card-content">
-                <div className="blog-card-top">
-                  <span className="blog-date">{blog.date}</span>
+              <div className="home-blog-content">
+                {/* META */}
 
-                  <span className="blog-read">Read Article</span>
+                <div className="home-blog-meta">
+                  <span>
+                    <FaCalendarAlt />
+                    {blog.date}
+                  </span>
+
+                  <span>
+                    <FaClock />
+                    {blog.readTime || blog.read}
+                  </span>
                 </div>
 
-                <h3>{blog.title}</h3>
+                {/* TITLE */}
+
+                <h3>
+                  <Link to={`/blog/${blog.slug}`}>{blog.title}</Link>
+                </h3>
+
+                {/* EXCERPT */}
 
                 <p>{blog.excerpt}</p>
 
-                <div className="blog-card-footer">
-                  <span className="blog-card-gold-line" />
+                {/* READ */}
 
-                  <span className="blog-card-link">
-                    Discover Insight
-                    <ArrowUpRight size={15} />
-                  </span>
-                </div>
+                <Link to={`/blog/${blog.slug}`} className="home-blog-read">
+                  <span>Read Article</span>
+
+                  <FaArrowRight />
+                </Link>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
 
-        {/* =========================
-            HOME FOOTER
-        ========================= */}
+        {/* =========================================
+            BOTTOM
+        ========================================= */}
 
-        {!isBlogsPage && (
-          <div className="blogs-footer">
-            <div className="blogs-footer-line" />
+        <div className="home-blog-bottom">
+          <div className="home-blog-bottom-content">
+            <span>Our Latest Thinking</span>
 
-            <p>Clear thinking. Stronger decisions. Better legal outcomes.</p>
-
-            <div className="blogs-footer-line" />
+            <h3>Explore all legal insights</h3>
           </div>
-        )}
 
-        {/* =========================
-            FULL BLOG PAGE FOOTER
-        ========================= */}
+          <Link to="/blogs" className="home-blog-all-btn">
+            <span>View All Insights</span>
 
-        {isBlogsPage && (
-          <div className="blogs-page-bottom">
-            <div className="blogs-page-bottom-line" />
-
-            <div className="blogs-page-header">
-              <span>SKL / LEGAL JOURNAL</span>
-
-              <p>Clear thinking. Stronger decisions. Better legal outcomes.</p>
-
-              <Link to="/">
-                <ArrowLeft size={16} />
-                Back to Home
-              </Link>
-            </div>
-
-            <div className="blogs-page-bottom-line" />
-          </div>
-        )}
+            <span className="home-blog-all-arrow">
+              <FaArrowRight />
+            </span>
+          </Link>
+        </div>
       </div>
     </section>
   );

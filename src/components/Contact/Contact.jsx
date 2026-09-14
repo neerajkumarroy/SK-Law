@@ -186,14 +186,14 @@ const Contact = () => {
               <ArrowUpRight size={17} />
             </a>
 
-            <a href="mailto:contact@neerajlaw.com" className="contact-detail">
+            <a href="mailto:contact@sarikalaw.com" className="contact-detail">
               <span className="contact-detail-icon">
                 <Mail size={19} strokeWidth={1.5} />
               </span>
 
               <span>
                 <small>Email</small>
-                <strong>contact@neerajlaw.com</strong>
+                <strong>contact@sarikalaw.com</strong>
               </span>
 
               <ArrowUpRight size={17} />

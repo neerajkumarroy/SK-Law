@@ -3,7 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { FaUserTie } from "react-icons/fa";
 import gsap from "gsap";
 
-import heroimage from "../../assets/images/hero-law.jpg";
+import heroimage from "../../assets/images/hero-law.png";
 import "./Hero.css";
 
 const Hero = () => {
