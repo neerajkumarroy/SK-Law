@@ -160,7 +160,7 @@ const AboutDetails = () => {
             <div className="about-details-hero-image">
               <img
                 src={AboutImage}
-                alt="Neeraj - Legal Professional"
+                alt="Sarika - Legal Professional"
                 className="about-details-photo"
               />
 
@@ -240,7 +240,7 @@ const AboutDetails = () => {
       <section className="about-details-profile">
         <div className="about-details-container about-details-profile-grid">
           <div className="about-details-profile-image about-detail-reveal">
-            <img src={AboutImage} alt="Neeraj" />
+            <img src={AboutImage} alt="Sarika" />
 
             <div className="profile-image-border" />
 
@@ -254,7 +254,7 @@ const AboutDetails = () => {
             </div>
 
             <h2>
-              Meet <em>Neeraj.</em>
+              Meet <em>Sarika Kushwaha.</em>
             </h2>
 
             <p className="profile-lead">
@@ -264,7 +264,7 @@ const AboutDetails = () => {
             </p>
 
             <p>
-              Neeraj believes that good legal representation is not only about
+              Sarika believes that good legal representation is not only about
               knowing the law. It is about listening carefully, communicating
               honestly and preparing every matter with discipline and attention
               to detail.
@@ -280,7 +280,7 @@ const AboutDetails = () => {
               <span />
 
               <div>
-                <strong>Neeraj</strong>
+                <strong>Sarika</strong>
                 <small>Legal Professional</small>
               </div>
             </div>

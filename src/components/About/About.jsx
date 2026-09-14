@@ -103,7 +103,7 @@ const About = () => {
 
         <div className="about-visual">
           <div className="about-image-wrap">
-            <img src={AboutImage} alt="Neeraj Law" className="about-photo" />
+            <img src={AboutImage} alt="sarika Law" className="about-photo" />
 
             <div className="about-photo-overlay" />
 
